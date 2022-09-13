@@ -22,6 +22,7 @@ sender can be empty
 
 filter = where it was sourced from (other, party, system, etc), and channel is the type
 
+// 参考 LogFilter.csv
 Known channels: 
 - 03 - motd / server announcements
 - 0A - say
@@ -176,17 +177,34 @@ Text is UTF-8 encoded:
     - [0a f6 02 e0 e6 01 f3 01]
   - 结束Tag：0xCF
     - [cf 1 1 1 ff 1]
-
-- 0x48:
-  - 像是样式设定
-  - 链接图标参数(橙色) [f2 01 f4]，部分物体链接前也可见参数 [f2 02 25] （看上去像是白色）
-  - Buff 图标（蓝色） [f2 02 05], Debuff 图标 （红色）[f2 02 06]
-  - 参数为1的时候应该是重置
-- 0x49:
-  - 像是样式设定
-  - 链接图标参数 [f2 01 f5]，部分物体链接前也可见参数 [f2 02 26], [f2 02 2a]
-  
-  - 参数为1的时候应该是重置
+- 0x2E: 定型文
+  - 参考对应关系: [Github gist](https://gist.github.com/3735943886/fe5ac8012ffe37c9dfa180b1944b513c)
+  = 对应数据表: Completion.csv
+  - 第一个Byte是组别
+  - 第二个Byte开始是压缩数据格式。
+    - 若为 0x01-0xCF，则数据为此数据 - 1
+    - 若为 0xF0，则说明后面跟着一个Byte，其值为数据实际值
+    - 若为 0xF1, 则说明后面跟着一个Byte，其值为数据实际值 / 256
+    - 若为 0xF2，则说明后面跟着2个Byte，其值为数据实际值
+    - 若为 0xF6，则说明后面跟着3个Byte，其值为数据实际值
+- 0x48: 像是样式设定
+  - [f2 01 f4] 链接图标参数(橙色) 
+  - [f2 02 25] 普通物体（看上去像是白色）
+  - [f2 02 27] 绿色装备
+  - [f2 02 29] 蓝色装备
+  - [f2 02 05] Buff 图标（蓝色） 
+  - [f2 02 06] Debuff 图标 （红色）
+  - [f2 02 3b] 量谱
+  - [01] 重置样式
+  - 看上去是 UIColor.csv 这个表的颜色
+- 0x49: 像是样式设定
+  - [f2 01 f5] 链接图标参数 (橙色) 
+  - [f2 02 26] 部分物体链接前也可见参数（看上去像是白色）
+  - [f2 02 28] 绿色装备
+  - [f2 02 2a] 蓝色装备
+  - [f2 02 3c] 量谱
+  - [01] 重置样式
+  - 看上去是 UIColor.csv 这个表的颜色
 
 ```
 2 48 4 f2 2 25 3
