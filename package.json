@@ -10,8 +10,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "purecss": "^2.1.0",
     "vue": "^3.2.38",
-    "vue-class-setup": "^1.3.0",
+    "vue-facing-decorator": "^2.1.12",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
