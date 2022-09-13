@@ -2,15 +2,71 @@ export class Message {
     time: Date;
     filter: number;
     channel: number;
-    sender: string;
-    text: string;
+    sender: TokenText;
+    text: TokenText;
 
-    constructor(timestamp: number, filter: number, channel: number, sender: string, text: string) {
+    constructor(timestamp: number, filter: number, channel: number, sender: TokenText, text: TokenText) {
         this.time = new Date(timestamp * 1000);
         this.filter = filter;
         this.channel = channel;
         this.sender = sender;
         this.text = text;
+    }
+}
+
+export enum TokenType {
+    Text,
+    Token,
+    Unknown
+}
+
+export class TokenItem {
+    type: TokenType;
+    cmd: number;
+    param: ArrayBuffer;
+    text: string;
+
+    constructor(type: TokenType, cmd: number, param: ArrayBuffer, text: string) {
+        this.type = type;
+        this.cmd = cmd;
+        this.param = param;
+        this.text = text;
+    }
+
+    static FromText(text: string): TokenItem {
+        return new TokenItem(TokenType.Text, 0, new ArrayBuffer(0), text);
+    }
+
+    static FromToken(cmd: number, param: ArrayBuffer): TokenItem {
+        return new TokenItem(TokenType.Token, cmd, param, "");
+    }
+
+    public ToString(): string {
+        switch (this.type) {
+            case TokenType.Text:
+                return this.text;
+            case TokenType.Token:
+                return "[" + ('00' + this.cmd.toString(16)).slice(-2) + "|" + buf2hex(this.param) + "]";
+            case TokenType.Unknown:
+            default:
+                return "[Unknown]";
+        }
+    }
+}
+
+export class TokenText {
+    items: TokenItem[]
+
+    constructor(items: TokenItem[]) {
+        this.items = items;
+    }
+
+    public ToString(): string {
+        let str = "";
+        for (let i = 0; i < this.items.length; i++) {
+            str += this.items[i].ToString();
+        }
+        return str;
     }
 }
 
@@ -71,7 +127,7 @@ export class BinLogParser {
         }
         if (col2 < 9) return;
 
-        let sender = "";
+        let sender = new TokenText([]);
         if (col2 > 9) {
             sender = this.parse_token_text(dat.slice(9, col2));
             // console.log(sender, this.buf2hex(dat.slice(9, col2)));
@@ -81,41 +137,37 @@ export class BinLogParser {
         return new Message(timestamp, filter, channel, sender, text);
     }
 
-    parse_token_text(dat: ArrayBuffer): string {
+    parse_token_text(dat: ArrayBuffer): TokenText {
         const dw = new DataView(dat, 0);
         const decoder = new TextDecoder("utf-8");
 
-        let text = "";
+        let items = [];
         let beg = 0;
-
         for (let i = beg; i < dat.byteLength; i++) {
             const byte = dw.getUint8(i);
             if (byte == 2) {
                 // save last
-                text += decoder.decode(dat.slice(beg, i));
+                items.push(TokenItem.FromText(decoder.decode(dat.slice(beg, i))));
 
                 const cmd = dw.getUint8(i + 1);
                 const payloadLen = dw.getInt8(i + 2);
                 const payload = dat.slice(i + 3, i + 3 + payloadLen - 1); // exclude terminate 3
-
-                text += this.parse_token(cmd, payload);
+                items.push(TokenItem.FromToken(cmd, payload));
 
                 i += 3 + payloadLen - 1;
                 beg = i + 1;
             }
         }
-        text += decoder.decode(dat.slice(beg));
-        return text;
+        if (beg < dat.byteLength) {
+            items.push(TokenItem.FromText(decoder.decode(dat.slice(beg))));
+        }
+        return new TokenText(items);
     }
 
-    parse_token(cmd: number, payload: ArrayBuffer): string {
+}
 
-        return "[" + ('00' + cmd.toString(16)).slice(-2) + "|" + this.buf2hex(payload) + "]";
-    }
-
-    buf2hex(buffer: ArrayBuffer) { // buffer is an ArrayBuffer
-        return [...new Uint8Array(buffer)]
-            .map(x => ('00' + x.toString(16)).slice(-2))
-            .join(' ');
-    }
+export function buf2hex(buffer: ArrayBuffer) { // buffer is an ArrayBuffer
+    return [...new Uint8Array(buffer)]
+        .map(x => ('00' + x.toString(16)).slice(-2))
+        .join(' ');
 }

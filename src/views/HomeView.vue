@@ -12,8 +12,8 @@
         <span>{{item.time.toLocaleTimeString()}}</span>
         <span>{{('00' + item.filter.toString(16)).slice(-2)}}</span>
         <span>{{('00' + item.channel.toString(16)).slice(-2)}}</span>
-        <span>{{item.sender}}</span>
-        <span>{{item.text}}</span>
+        <span>{{item.sender.ToString()}}</span>
+        <span>{{item.text.ToString()}}</span>
       </div>
     </div>
   </div>
