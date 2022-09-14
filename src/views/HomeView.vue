@@ -4,29 +4,28 @@
       <fieldset>
         <legend>请选择你的日志文件</legend>
         <input ref="file" type="file" accept=".log" placeholder="ACT" />
-        <button @click="parse" class="pure-button pure-button-primary">处理</button>
+        <a @click="parse" class="pure-button pure-button-primary">处理</a>
       </fieldset>
     </form>
     <div class="message-list">
-      <div class="message-item" v-for="(item, index) in messages">
-        <span>{{item.time.toLocaleTimeString()}}</span>
-        <span>{{('00' + item.filter.toString(16)).slice(-2)}}</span>
-        <span>{{('00' + item.channel.toString(16)).slice(-2)}}</span>
-        <span>{{item.sender.ToString()}}</span>
-        <span>{{item.text.ToString()}}</span>
-      </div>
+      <Message class="message-item" v-for="(item, index) in messages" :msg="item" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import type { Message } from '@/model/message';
 import { Component, Ref, Vue } from 'vue-facing-decorator'
-import { BinLogParser, Message } from '../model/binlog_parser'
+import { BinLogParser } from '../model/binlog_parser'
+import MessageComponent from '@/component/Message.vue';
+import { initTooltip } from '@thewakingsands/kit-tooltip';
 
-@Component
+@Component({
+  components: {
+    Message: MessageComponent
+  }
+})
 export default class Home extends Vue {
-
-// Setup and Context must work together
   @Ref
   readonly file!: HTMLInputElement
 
@@ -48,21 +47,39 @@ export default class Home extends Vue {
         console.log(evt);
       }
     }
+    return false;
+  }
+
+  mounted() {
+    initTooltip({
+      context: {
+        apiBaseUrl: 'https://cafemaker.wakingsands.com',  // xivapi 或 cafemaker 的 url；最后不要有斜线
+        iconBaseUrl: 'https://cafemaker.wakingsands.com/i', // 图标 cdn 的 url；最后不要有斜线
+        defaultHq: false,  // 是否默认显示 HQ 数据
+        hideSeCopyright: false, // 是否隐藏 SE 版权信息
+      },
+      links: {
+        detectWikiLinks: true,  // 是否自动识别 wiki 物品链接
+        itemIdAttribute: 'item-id', // 自定义悬浮窗时，声明物品 ID 的属性
+        actionIdAttribute: 'action-id', // 自定义悬浮窗时，声明技能 ID 的属性
+        rootContainer: document.body, // 监控的根元素
+      },
+    })
   }
 }
 </script>
 
 <style scoped>
-  
 @font-face {
   font-family: "FFXIV";
   src: url("../assets/FFXIV_Lodestone_SSF.ttf") format("truetype"),
-      url("../assets/FFXIV_Lodestone_SSF.woff") format("woff");
+    url("../assets/FFXIV_Lodestone_SSF.woff") format("woff");
   unicode-range: U+E020-E0DB;
 }
 
 .message-item {
-  font-family: '思源黑体', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, 'FFXIV';
+  font-family: "思源黑体", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif, "FFXIV";
 }
 .message-item span + span {
   padding-left: 1em;

@@ -1,7 +1,8 @@
 import { readFile } from "fs/promises";
 import { argv, exit } from "process";
 
-import { Message, BinLogParser, buf2hex, TokenItem } from "../src/model/binlog_parser";
+import { BinLogParser } from "../src/model/binlog_parser";
+import { Message, TokenItem, buf2hex } from "../src/model/message";
 
 if (argv.length < 3) {
     console.log("Usage: converter <path1>");
@@ -60,6 +61,32 @@ function printIt(item: TokenItem): boolean {
 
     if (item.cmd !== 0x2E) return false;
 
+    // const unkList = [0xF3, 0xF4, 0xF5, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD];
+    // for (let i = 0; i < item.param.byteLength; i++) {
+    //     const current = dw.getUint8(i);
+    //     if (current < 0xF0) continue;
+    //     if (current == 0xF0 || current == 0xF1) {
+    //         i++;
+    //         continue;
+    //     }
+    //     if (current == 0xF2) {
+    //         i+=2;
+    //         continue;
+    //     }
+    //     if (current == 0xF6) {
+    //         i+=3;
+    //         continue;
+    //     }
+    //     if (current == 0xFE) {
+    //         i+=4;
+    //         continue;
+    //     }
+    //     if (unkList.includes(current) && i < item.param.byteLength - 1) {
+    //         console.log(item.cmd, buf2hex(item.param));
+    //         return true;
+    //     }
+    // }
+
     // if (item.param.byteLength === 1 && dw.getUint8(0) === 1) {
     //     return false;
     // }
@@ -71,6 +98,7 @@ function printIt(item: TokenItem): boolean {
 
     console.log(item.cmd, buf2hex(item.param));
     return true;
+    // return false;
 }
 
 function toArrayBuffer(buf) {

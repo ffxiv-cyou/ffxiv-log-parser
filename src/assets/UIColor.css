@@ -1,0 +1,825 @@
+.plate-0 {
+    --color: rgba(0, 0, 0, 0.000000);
+    --glow-color: rgba(0, 0, 0, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 0.000000);
+}
+.plate-1 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(76, 52, 47, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-2 {
+    --color: rgba(204, 204, 204, 1.000000);
+    --glow-color: rgba(103, 79, 69, 1.000000);
+    --unk3-color: rgba(204, 204, 204, 1.000000);
+}
+.plate-3 {
+    --color: rgba(160, 160, 160, 1.000000);
+    --glow-color: rgba(134, 111, 96, 1.000000);
+    --unk3-color: rgba(160, 160, 160, 1.000000);
+}
+.plate-4 {
+    --color: rgba(128, 128, 128, 1.000000);
+    --glow-color: rgba(160, 138, 119, 1.000000);
+    --unk3-color: rgba(128, 128, 128, 1.000000);
+}
+.plate-5 {
+    --color: rgba(100, 100, 100, 1.000000);
+    --glow-color: rgba(182, 161, 138, 1.000000);
+    --unk3-color: rgba(110, 110, 110, 1.000000);
+}
+.plate-6 {
+    --color: rgba(51, 51, 51, 1.000000);
+    --glow-color: rgba(250, 217, 174, 1.000000);
+    --unk3-color: rgba(87, 87, 87, 1.000000);
+}
+.plate-7 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 243, 231, 1.000000);
+    --unk3-color: rgba(12, 0, 56, 1.000000);
+}
+.plate-8 {
+    --color: rgba(238, 225, 197, 1.000000);
+    --glow-color: rgba(125, 82, 59, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-9 {
+    --color: rgba(193, 123, 183, 1.000000);
+    --glow-color: rgba(125, 69, 117, 1.000000);
+    --unk3-color: rgba(193, 123, 183, 1.000000);
+}
+.plate-10 {
+    --color: rgba(255, 212, 216, 1.000000);
+    --glow-color: rgba(145, 25, 37, 1.000000);
+    --unk3-color: rgba(255, 212, 216, 1.000000);
+}
+.plate-11 {
+    --color: rgba(150, 116, 94, 1.000000);
+    --glow-color: rgba(153, 119, 96, 1.000000);
+    --unk3-color: rgba(202, 117, 87, 1.000000);
+}
+.plate-12 {
+    --color: rgba(255, 153, 153, 1.000000);
+    --glow-color: rgba(145, 58, 58, 1.000000);
+    --unk3-color: rgba(255, 153, 153, 1.000000);
+}
+.plate-13 {
+    --color: rgba(169, 96, 60, 1.000000);
+    --glow-color: rgba(135, 78, 50, 1.000000);
+    --unk3-color: rgba(169, 96, 60, 1.000000);
+}
+.plate-14 {
+    --color: rgba(204, 55, 55, 1.000000);
+    --glow-color: rgba(148, 0, 0, 1.000000);
+    --unk3-color: rgba(204, 55, 55, 1.000000);
+}
+.plate-15 {
+    --color: rgba(233, 98, 76, 1.000000);
+    --glow-color: rgba(120, 20, 5, 1.000000);
+    --unk3-color: rgba(233, 98, 76, 1.000000);
+}
+.plate-16 {
+    --color: rgba(229, 0, 79, 1.000000);
+    --glow-color: rgba(204, 0, 71, 1.000000);
+    --unk3-color: rgba(229, 0, 79, 1.000000);
+}
+.plate-17 {
+    --color: rgba(220, 0, 0, 1.000000);
+    --glow-color: rgba(220, 0, 0, 1.000000);
+    --unk3-color: rgba(220, 0, 0, 1.000000);
+}
+.plate-18 {
+    --color: rgba(134, 48, 48, 1.000000);
+    --glow-color: rgba(168, 61, 61, 1.000000);
+    --unk3-color: rgba(178, 46, 46, 1.000000);
+}
+.plate-19 {
+    --color: rgba(68, 11, 0, 1.000000);
+    --glow-color: rgba(235, 180, 169, 1.000000);
+    --unk3-color: rgba(143, 7, 7, 1.000000);
+}
+.plate-20 {
+    --color: rgba(195, 188, 165, 1.000000);
+    --glow-color: rgba(135, 101, 74, 1.000000);
+    --unk3-color: rgba(195, 188, 165, 1.000000);
+}
+.plate-21 {
+    --color: rgba(162, 154, 135, 1.000000);
+    --glow-color: rgba(163, 135, 103, 1.000000);
+    --unk3-color: rgba(162, 154, 135, 1.000000);
+}
+.plate-22 {
+    --color: rgba(216, 187, 125, 1.000000);
+    --glow-color: rgba(115, 46, 9, 1.000000);
+    --unk3-color: rgba(177, 216, 224, 1.000000);
+}
+.plate-23 {
+    --color: rgba(157, 131, 91, 1.000000);
+    --glow-color: rgba(171, 120, 82, 1.000000);
+    --unk3-color: rgba(165, 231, 224, 1.000000);
+}
+.plate-24 {
+    --color: rgba(255, 248, 176, 1.000000);
+    --glow-color: rgba(97, 92, 40, 1.000000);
+    --unk3-color: rgba(255, 248, 176, 1.000000);
+}
+.plate-25 {
+    --color: rgba(255, 255, 102, 1.000000);
+    --glow-color: rgba(145, 145, 17, 1.000000);
+    --unk3-color: rgba(255, 255, 102, 1.000000);
+}
+.plate-26 {
+    --color: rgba(215, 203, 70, 1.000000);
+    --glow-color: rgba(175, 165, 59, 1.000000);
+    --unk3-color: rgba(215, 203, 70, 1.000000);
+}
+.plate-27 {
+    --color: rgba(141, 136, 0, 1.000000);
+    --glow-color: rgba(187, 183, 72, 1.000000);
+    --unk3-color: rgba(141, 136, 0, 1.000000);
+}
+.plate-28 {
+    --color: rgba(230, 167, 58, 1.000000);
+    --glow-color: rgba(153, 97, 0, 1.000000);
+    --unk3-color: rgba(230, 167, 58, 1.000000);
+}
+.plate-29 {
+    --color: rgba(115, 85, 15, 1.000000);
+    --glow-color: rgba(189, 165, 111, 1.000000);
+    --unk3-color: rgba(152, 109, 10, 1.000000);
+}
+.plate-30 {
+    --color: rgba(97, 65, 51, 1.000000);
+    --glow-color: rgba(207, 170, 155, 1.000000);
+    --unk3-color: rgba(153, 77, 44, 1.000000);
+}
+.plate-31 {
+    --color: rgba(243, 204, 100, 1.000000);
+    --glow-color: rgba(166, 127, 22, 1.000000);
+    --unk3-color: rgba(243, 204, 100, 1.000000);
+}
+.plate-32 {
+    --color: rgba(240, 142, 55, 1.000000);
+    --glow-color: rgba(163, 76, 0, 1.000000);
+    --unk3-color: rgba(240, 142, 55, 1.000000);
+}
+.plate-33 {
+    --color: rgba(211, 238, 233, 1.000000);
+    --glow-color: rgba(70, 115, 107, 1.000000);
+    --unk3-color: rgba(211, 238, 233, 1.000000);
+}
+.plate-34 {
+    --color: rgba(159, 238, 241, 1.000000);
+    --glow-color: rgba(42, 107, 110, 1.000000);
+    --unk3-color: rgba(159, 238, 241, 1.000000);
+}
+.plate-35 {
+    --color: rgba(121, 199, 236, 1.000000);
+    --glow-color: rgba(40, 102, 130, 1.000000);
+    --unk3-color: rgba(121, 199, 236, 1.000000);
+}
+.plate-36 {
+    --color: rgba(49, 97, 134, 1.000000);
+    --glow-color: rgba(106, 141, 168, 1.000000);
+    --unk3-color: rgba(55, 140, 205, 1.000000);
+}
+.plate-37 {
+    --color: rgba(0, 153, 255, 1.000000);
+    --glow-color: rgba(0, 87, 145, 1.000000);
+    --unk3-color: rgba(0, 153, 255, 1.000000);
+}
+.plate-38 {
+    --color: rgba(0, 80, 178, 1.000000);
+    --glow-color: rgba(90, 106, 125, 1.000000);
+    --unk3-color: rgba(19, 125, 255, 1.000000);
+}
+.plate-39 {
+    --color: rgba(148, 206, 199, 1.000000);
+    --glow-color: rgba(64, 145, 136, 1.000000);
+    --unk3-color: rgba(148, 206, 199, 1.000000);
+}
+.plate-40 {
+    --color: rgba(136, 220, 174, 1.000000);
+    --glow-color: rgba(45, 133, 84, 1.000000);
+    --unk3-color: rgba(136, 220, 174, 1.000000);
+}
+.plate-41 {
+    --color: rgba(69, 178, 174, 1.000000);
+    --glow-color: rgba(41, 125, 122, 1.000000);
+    --unk3-color: rgba(69, 178, 174, 1.000000);
+}
+.plate-42 {
+    --color: rgba(151, 220, 96, 1.000000);
+    --glow-color: rgba(71, 133, 21, 1.000000);
+    --unk3-color: rgba(151, 220, 96, 1.000000);
+}
+.plate-43 {
+    --color: rgba(140, 255, 90, 1.000000);
+    --glow-color: rgba(112, 161, 27, 1.000000);
+    --unk3-color: rgba(140, 255, 90, 1.000000);
+}
+.plate-44 {
+    --color: rgba(117, 187, 0, 1.000000);
+    --glow-color: rgba(86, 117, 33, 1.000000);
+    --unk3-color: rgba(117, 187, 0, 1.000000);
+}
+.plate-45 {
+    --color: rgba(0, 204, 34, 1.000000);
+    --glow-color: rgba(25, 148, 0, 1.000000);
+    --unk3-color: rgba(0, 204, 34, 1.000000);
+}
+.plate-46 {
+    --color: rgba(40, 130, 70, 1.000000);
+    --glow-color: rgba(71, 173, 71, 1.000000);
+    --unk3-color: rgba(40, 130, 70, 1.000000);
+}
+.plate-47 {
+    --color: rgba(10, 57, 24, 1.000000);
+    --glow-color: rgba(168, 247, 134, 1.000000);
+    --unk3-color: rgba(1, 114, 35, 1.000000);
+}
+.plate-48 {
+    --color: rgba(170, 129, 255, 1.000000);
+    --glow-color: rgba(96, 71, 145, 1.000000);
+    --unk3-color: rgba(200, 90, 255, 1.000000);
+}
+.plate-49 {
+    --color: rgba(85, 52, 194, 1.000000);
+    --glow-color: rgba(125, 115, 158, 1.000000);
+    --unk3-color: rgba(133, 85, 255, 1.000000);
+}
+.plate-50 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-51 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(0, 0, 0, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-52 {
+    --color: rgba(19, 204, 163, 1.000000);
+    --glow-color: rgba(19, 204, 163, 1.000000);
+    --unk3-color: rgba(19, 204, 163, 1.000000);
+}
+.plate-53 {
+    --color: rgba(10, 105, 146, 1.000000);
+    --glow-color: rgba(10, 105, 146, 1.000000);
+    --unk3-color: rgba(10, 105, 146, 1.000000);
+}
+.plate-54 {
+    --color: rgba(142, 106, 12, 1.000000);
+    --glow-color: rgba(142, 106, 12, 1.000000);
+    --unk3-color: rgba(142, 106, 12, 1.000000);
+}
+.plate-55 {
+    --color: rgba(51, 51, 51, 1.000000);
+    --glow-color: rgba(51, 51, 51, 1.000000);
+    --unk3-color: rgba(51, 51, 51, 1.000000);
+}
+.plate-56 {
+    --color: rgba(158, 168, 255, 1.000000);
+    --glow-color: rgba(107, 117, 209, 1.000000);
+    --unk3-color: rgba(158, 168, 255, 1.000000);
+}
+.plate-57 {
+    --color: rgba(76, 190, 255, 1.000000);
+    --glow-color: rgba(41, 138, 194, 1.000000);
+    --unk3-color: rgba(76, 190, 255, 1.000000);
+}
+.plate-58 {
+    --color: rgba(26, 214, 214, 1.000000);
+    --glow-color: rgba(10, 173, 160, 1.000000);
+    --unk3-color: rgba(26, 214, 214, 1.000000);
+}
+.plate-59 {
+    --color: rgba(46, 209, 133, 1.000000);
+    --glow-color: rgba(0, 167, 131, 1.000000);
+    --unk3-color: rgba(46, 209, 133, 1.000000);
+}
+.plate-60 {
+    --color: rgba(88, 214, 34, 1.000000);
+    --glow-color: rgba(47, 156, 0, 1.000000);
+    --unk3-color: rgba(88, 214, 34, 1.000000);
+}
+.plate-61 {
+    --color: rgba(193, 229, 46, 1.000000);
+    --glow-color: rgba(120, 150, 0, 1.000000);
+    --unk3-color: rgba(193, 229, 46, 1.000000);
+}
+.plate-62 {
+    --color: rgba(245, 235, 103, 1.000000);
+    --glow-color: rgba(138, 129, 6, 1.000000);
+    --unk3-color: rgba(245, 235, 103, 1.000000);
+}
+.plate-63 {
+    --color: rgba(241, 183, 91, 1.000000);
+    --glow-color: rgba(168, 104, 0, 1.000000);
+    --unk3-color: rgba(241, 183, 91, 1.000000);
+}
+.plate-64 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(156, 97, 22, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-65 {
+    --color: rgba(240, 142, 55, 1.000000);
+    --glow-color: rgba(255, 177, 125, 1.000000);
+    --unk3-color: rgba(240, 142, 55, 1.000000);
+}
+.plate-66 {
+    --color: rgba(255, 192, 80, 1.000000);
+    --glow-color: rgba(219, 71, 25, 1.000000);
+    --unk3-color: rgba(255, 192, 80, 1.000000);
+}
+.plate-67 {
+    --color: rgba(160, 248, 116, 1.000000);
+    --glow-color: rgba(2, 117, 24, 1.000000);
+    --unk3-color: rgba(160, 248, 116, 1.000000);
+}
+.plate-68 {
+    --color: rgba(76, 52, 47, 1.000000);
+    --glow-color: rgba(76, 52, 47, 1.000000);
+    --unk3-color: rgba(76, 52, 47, 1.000000);
+}
+.plate-69 {
+    --color: rgba(159, 238, 241, 1.000000);
+    --glow-color: rgba(159, 238, 241, 1.000000);
+    --unk3-color: rgba(159, 238, 241, 1.000000);
+}
+.plate-70 {
+    --color: rgba(121, 199, 236, 1.000000);
+    --glow-color: rgba(121, 199, 236, 1.000000);
+    --unk3-color: rgba(121, 199, 236, 1.000000);
+}
+.plate-71 {
+    --color: rgba(252, 201, 52, 1.000000);
+    --glow-color: rgba(252, 201, 52, 1.000000);
+    --unk3-color: rgba(252, 201, 52, 1.000000);
+}
+.plate-72 {
+    --color: rgba(192, 255, 192, 1.000000);
+    --glow-color: rgba(192, 255, 192, 1.000000);
+    --unk3-color: rgba(192, 255, 192, 1.000000);
+}
+.plate-500 {
+    --color: rgba(255, 123, 26, 1.000000);
+    --glow-color: rgba(204, 86, 0, 1.000000);
+    --unk3-color: rgba(255, 123, 26, 1.000000);
+}
+.plate-501 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 195, 172, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-502 {
+    --color: rgba(64, 191, 255, 1.000000);
+    --glow-color: rgba(42, 148, 202, 1.000000);
+    --unk3-color: rgba(64, 191, 255, 1.000000);
+}
+.plate-503 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(225, 237, 255, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-504 {
+    --color: rgba(0, 204, 34, 1.000000);
+    --glow-color: rgba(82, 160, 95, 1.000000);
+    --unk3-color: rgba(0, 204, 34, 1.000000);
+}
+.plate-505 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(197, 220, 141, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-506 {
+    --color: rgba(255, 255, 102, 1.000000);
+    --glow-color: rgba(190, 103, 0, 1.000000);
+    --unk3-color: rgba(255, 255, 102, 1.000000);
+}
+.plate-507 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 213, 140, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-508 {
+    --color: rgba(255, 128, 128, 1.000000);
+    --glow-color: rgba(195, 70, 70, 1.000000);
+    --unk3-color: rgba(255, 128, 128, 1.000000);
+}
+.plate-509 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 208, 208, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-510 {
+    --color: rgba(255, 232, 232, 1.000000);
+    --glow-color: rgba(255, 232, 232, 1.000000);
+    --unk3-color: rgba(255, 232, 232, 1.000000);
+}
+.plate-511 {
+    --color: rgba(192, 48, 0, 1.000000);
+    --glow-color: rgba(192, 48, 0, 1.000000);
+    --unk3-color: rgba(192, 48, 0, 1.000000);
+}
+.plate-512 {
+    --color: rgba(190, 205, 255, 1.000000);
+    --glow-color: rgba(190, 205, 255, 1.000000);
+    --unk3-color: rgba(190, 205, 255, 1.000000);
+}
+.plate-513 {
+    --color: rgba(27, 43, 158, 1.000000);
+    --glow-color: rgba(27, 43, 158, 1.000000);
+    --unk3-color: rgba(27, 43, 158, 1.000000);
+}
+.plate-514 {
+    --color: rgba(225, 197, 0, 0.933333);
+    --glow-color: rgba(176, 116, 0, 1.000000);
+    --unk3-color: rgba(225, 197, 0, 0.933333);
+}
+.plate-515 {
+    --color: rgba(255, 232, 232, 1.000000);
+    --glow-color: rgba(255, 232, 232, 1.000000);
+    --unk3-color: rgba(255, 232, 232, 1.000000);
+}
+.plate-516 {
+    --color: rgba(192, 48, 0, 1.000000);
+    --glow-color: rgba(192, 48, 0, 1.000000);
+    --unk3-color: rgba(192, 48, 0, 1.000000);
+}
+.plate-517 {
+    --color: rgba(102, 210, 255, 1.000000);
+    --glow-color: rgba(102, 210, 255, 1.000000);
+    --unk3-color: rgba(102, 210, 255, 1.000000);
+}
+.plate-518 {
+    --color: rgba(255, 40, 4, 1.000000);
+    --glow-color: rgba(255, 40, 4, 1.000000);
+    --unk3-color: rgba(255, 40, 4, 1.000000);
+}
+.plate-519 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-520 {
+    --color: rgba(198, 154, 65, 1.000000);
+    --glow-color: rgba(198, 154, 65, 1.000000);
+    --unk3-color: rgba(198, 154, 65, 1.000000);
+}
+.plate-521 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-522 {
+    --color: rgba(196, 119, 234, 1.000000);
+    --glow-color: rgba(196, 119, 234, 1.000000);
+    --unk3-color: rgba(196, 119, 234, 1.000000);
+}
+.plate-523 {
+    --color: rgba(255, 235, 234, 1.000000);
+    --glow-color: rgba(255, 235, 234, 1.000000);
+    --unk3-color: rgba(255, 235, 234, 1.000000);
+}
+.plate-524 {
+    --color: rgba(255, 112, 146, 1.000000);
+    --glow-color: rgba(255, 112, 146, 1.000000);
+    --unk3-color: rgba(255, 112, 146, 1.000000);
+}
+.plate-525 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-526 {
+    --color: rgba(71, 186, 255, 1.000000);
+    --glow-color: rgba(71, 186, 255, 1.000000);
+    --unk3-color: rgba(71, 186, 255, 1.000000);
+}
+.plate-527 {
+    --color: rgba(255, 174, 0, 1.000000);
+    --glow-color: rgba(255, 174, 0, 1.000000);
+    --unk3-color: rgba(255, 174, 0, 1.000000);
+}
+.plate-528 {
+    --color: rgba(139, 95, 0, 1.000000);
+    --glow-color: rgba(139, 95, 0, 1.000000);
+    --unk3-color: rgba(139, 95, 0, 1.000000);
+}
+.plate-529 {
+    --color: rgba(48, 214, 255, 1.000000);
+    --glow-color: rgba(48, 214, 255, 1.000000);
+    --unk3-color: rgba(48, 214, 255, 1.000000);
+}
+.plate-530 {
+    --color: rgba(61, 101, 125, 1.000000);
+    --glow-color: rgba(61, 101, 125, 1.000000);
+    --unk3-color: rgba(61, 101, 125, 1.000000);
+}
+.plate-531 {
+    --color: rgba(255, 130, 97, 1.000000);
+    --glow-color: rgba(255, 130, 97, 1.000000);
+    --unk3-color: rgba(255, 130, 97, 1.000000);
+}
+.plate-532 {
+    --color: rgba(128, 74, 59, 1.000000);
+    --glow-color: rgba(128, 74, 59, 1.000000);
+    --unk3-color: rgba(128, 74, 59, 1.000000);
+}
+.plate-533 {
+    --color: rgba(255, 200, 200, 1.000000);
+    --glow-color: rgba(255, 200, 200, 1.000000);
+    --unk3-color: rgba(255, 200, 200, 1.000000);
+}
+.plate-534 {
+    --color: rgba(174, 0, 0, 1.000000);
+    --glow-color: rgba(174, 0, 0, 1.000000);
+    --unk3-color: rgba(174, 0, 0, 1.000000);
+}
+.plate-535 {
+    --color: rgba(255, 255, 192, 1.000000);
+    --glow-color: rgba(255, 255, 192, 1.000000);
+    --unk3-color: rgba(255, 255, 192, 1.000000);
+}
+.plate-536 {
+    --color: rgba(160, 88, 0, 1.000000);
+    --glow-color: rgba(160, 88, 0, 1.000000);
+    --unk3-color: rgba(160, 88, 0, 1.000000);
+}
+.plate-537 {
+    --color: rgba(255, 192, 255, 1.000000);
+    --glow-color: rgba(255, 192, 255, 1.000000);
+    --unk3-color: rgba(255, 192, 255, 1.000000);
+}
+.plate-538 {
+    --color: rgba(64, 0, 160, 1.000000);
+    --glow-color: rgba(64, 0, 160, 1.000000);
+    --unk3-color: rgba(64, 0, 160, 1.000000);
+}
+.plate-539 {
+    --color: rgba(255, 81, 81, 1.000000);
+    --glow-color: rgba(255, 81, 81, 1.000000);
+    --unk3-color: rgba(255, 81, 81, 1.000000);
+}
+.plate-540 {
+    --color: rgba(255, 182, 25, 1.000000);
+    --glow-color: rgba(255, 182, 25, 1.000000);
+    --unk3-color: rgba(255, 182, 25, 1.000000);
+}
+.plate-541 {
+    --color: rgba(192, 91, 254, 1.000000);
+    --glow-color: rgba(192, 91, 254, 1.000000);
+    --unk3-color: rgba(192, 91, 254, 1.000000);
+}
+.plate-542 {
+    --color: rgba(0, 150, 255, 1.000000);
+    --glow-color: rgba(0, 150, 255, 1.000000);
+    --unk3-color: rgba(0, 150, 255, 1.000000);
+}
+.plate-543 {
+    --color: rgba(0, 24, 255, 1.000000);
+    --glow-color: rgba(0, 24, 255, 1.000000);
+    --unk3-color: rgba(0, 24, 255, 1.000000);
+}
+.plate-544 {
+    --color: rgba(255, 86, 110, 1.000000);
+    --glow-color: rgba(255, 86, 110, 1.000000);
+    --unk3-color: rgba(255, 86, 110, 1.000000);
+}
+.plate-545 {
+    --color: rgba(180, 0, 0, 1.000000);
+    --glow-color: rgba(180, 0, 0, 1.000000);
+    --unk3-color: rgba(180, 0, 0, 1.000000);
+}
+.plate-546 {
+    --color: rgba(96, 184, 250, 1.000000);
+    --glow-color: rgba(96, 184, 250, 1.000000);
+    --unk3-color: rgba(96, 184, 250, 1.000000);
+}
+.plate-547 {
+    --color: rgba(196, 57, 99, 1.000000);
+    --glow-color: rgba(196, 57, 99, 1.000000);
+    --unk3-color: rgba(196, 57, 99, 1.000000);
+}
+.plate-548 {
+    --color: rgba(241, 198, 0, 1.000000);
+    --glow-color: rgba(176, 116, 0, 1.000000);
+    --unk3-color: rgba(241, 198, 0, 1.000000);
+}
+.plate-549 {
+    --color: rgba(243, 243, 243, 1.000000);
+    --glow-color: rgba(156, 107, 71, 1.000000);
+    --unk3-color: rgba(243, 243, 243, 1.000000);
+}
+.plate-550 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-551 {
+    --color: rgba(192, 255, 192, 1.000000);
+    --glow-color: rgba(93, 158, 0, 1.000000);
+    --unk3-color: rgba(0, 255, 0, 1.000000);
+}
+.plate-552 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 64, 0, 1.000000);
+}
+.plate-553 {
+    --color: rgba(89, 144, 255, 1.000000);
+    --glow-color: rgba(82, 132, 231, 1.000000);
+    --unk3-color: rgba(0, 255, 255, 1.000000);
+}
+.plate-554 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 0, 255, 1.000000);
+}
+.plate-555 {
+    --color: rgba(179, 140, 255, 1.000000);
+    --glow-color: rgba(130, 95, 201, 1.000000);
+    --unk3-color: rgba(179, 140, 255, 1.000000);
+}
+.plate-556 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(128, 0, 0, 1.000000);
+}
+.plate-557 {
+    --color: rgba(255, 166, 102, 1.000000);
+    --glow-color: rgba(232, 104, 12, 1.000000);
+    --unk3-color: rgba(255, 166, 102, 1.000000);
+}
+.plate-558 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-559 {
+    --color: rgba(255, 225, 25, 1.000000);
+    --glow-color: rgba(207, 151, 0, 1.000000);
+    --unk3-color: rgba(255, 225, 25, 1.000000);
+}
+.plate-560 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-561 {
+    --color: rgba(250, 137, 182, 1.000000);
+    --glow-color: rgba(222, 95, 146, 1.000000);
+    --unk3-color: rgba(250, 137, 182, 1.000000);
+}
+.plate-562 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(247, 223, 181, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-563 {
+    --color: rgba(233, 194, 156, 1.000000);
+    --glow-color: rgba(202, 122, 47, 1.000000);
+    --unk3-color: rgba(233, 194, 156, 1.000000);
+}
+.plate-564 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 183, 101, 0.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-565 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-566 {
+    --color: rgba(71, 186, 255, 1.000000);
+    --glow-color: rgba(71, 186, 255, 1.000000);
+    --unk3-color: rgba(71, 186, 255, 1.000000);
+}
+.plate-567 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-568 {
+    --color: rgba(230, 167, 58, 1.000000);
+    --glow-color: rgba(230, 167, 58, 1.000000);
+    --unk3-color: rgba(230, 167, 58, 1.000000);
+}
+.plate-569 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-570 {
+    --color: rgba(0, 204, 34, 1.000000);
+    --glow-color: rgba(0, 204, 34, 1.000000);
+    --unk3-color: rgba(0, 204, 34, 1.000000);
+}
+.plate-571 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(76, 52, 47, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-572 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 243, 231, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-573 {
+    --color: rgba(249, 232, 70, 1.000000);
+    --glow-color: rgba(143, 117, 0, 1.000000);
+    --unk3-color: rgba(249, 232, 70, 1.000000);
+}
+.plate-574 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(255, 239, 56, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-575 {
+    --color: rgba(55, 222, 153, 1.000000);
+    --glow-color: rgba(1, 154, 91, 1.000000);
+    --unk3-color: rgba(55, 222, 153, 1.000000);
+}
+.plate-576 {
+    --color: rgba(91, 226, 255, 1.000000);
+    --glow-color: rgba(5, 164, 198, 1.000000);
+    --unk3-color: rgba(91, 226, 255, 1.000000);
+}
+.plate-577 {
+    --color: rgba(255, 194, 64, 1.000000);
+    --glow-color: rgba(211, 114, 0, 1.000000);
+    --unk3-color: rgba(255, 194, 64, 1.000000);
+}
+.plate-578 {
+    --color: rgba(255, 90, 208, 1.000000);
+    --glow-color: rgba(232, 67, 185, 1.000000);
+    --unk3-color: rgba(255, 90, 208, 1.000000);
+}
+.plate-579 {
+    --color: rgba(128, 240, 240, 1.000000);
+    --glow-color: rgba(128, 240, 240, 1.000000);
+    --unk3-color: rgba(128, 240, 240, 1.000000);
+}
+.plate-580 {
+    --color: rgba(0, 32, 32, 1.000000);
+    --glow-color: rgba(0, 32, 32, 1.000000);
+    --unk3-color: rgba(0, 32, 32, 1.000000);
+}
+.plate-700 {
+    --color: rgba(255, 255, 255, 1.000000);
+    --glow-color: rgba(255, 255, 255, 1.000000);
+    --unk3-color: rgba(255, 255, 255, 1.000000);
+}
+.plate-701 {
+    --color: rgba(100, 100, 100, 1.000000);
+    --glow-color: rgba(100, 100, 100, 1.000000);
+    --unk3-color: rgba(100, 100, 100, 1.000000);
+}
+.plate-702 {
+    --color: rgba(0, 0, 0, 1.000000);
+    --glow-color: rgba(0, 0, 0, 1.000000);
+    --unk3-color: rgba(0, 0, 0, 1.000000);
+}
+.plate-703 {
+    --color: rgba(255, 212, 216, 1.000000);
+    --glow-color: rgba(255, 212, 216, 1.000000);
+    --unk3-color: rgba(255, 212, 216, 1.000000);
+}
+.plate-704 {
+    --color: rgba(204, 55, 55, 1.000000);
+    --glow-color: rgba(204, 55, 55, 1.000000);
+    --unk3-color: rgba(204, 55, 55, 1.000000);
+}
+.plate-705 {
+    --color: rgba(233, 98, 76, 1.000000);
+    --glow-color: rgba(233, 98, 76, 1.000000);
+    --unk3-color: rgba(233, 98, 76, 1.000000);
+}
+.plate-706 {
+    --color: rgba(240, 142, 55, 1.000000);
+    --glow-color: rgba(240, 142, 55, 1.000000);
+    --unk3-color: rgba(240, 142, 55, 1.000000);
+}
+.plate-707 {
+    --color: rgba(0, 153, 255, 1.000000);
+    --glow-color: rgba(0, 153, 255, 1.000000);
+    --unk3-color: rgba(0, 153, 255, 1.000000);
+}
+.plate-708 {
+    --color: rgba(170, 129, 255, 1.000000);
+    --glow-color: rgba(170, 129, 255, 1.000000);
+    --unk3-color: rgba(170, 129, 255, 1.000000);
+}
+.plate-709 {
+    --color: rgba(85, 52, 194, 1.000000);
+    --glow-color: rgba(85, 52, 194, 1.000000);
+    --unk3-color: rgba(85, 52, 194, 1.000000);
+}
+.plate-710 {
+    --color: rgba(245, 235, 103, 1.000000);
+    --glow-color: rgba(245, 235, 103, 1.000000);
+    --unk3-color: rgba(245, 235, 103, 1.000000);
+}

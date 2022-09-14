@@ -1,74 +1,4 @@
-export class Message {
-    time: Date;
-    filter: number;
-    channel: number;
-    sender: TokenText;
-    text: TokenText;
-
-    constructor(timestamp: number, filter: number, channel: number, sender: TokenText, text: TokenText) {
-        this.time = new Date(timestamp * 1000);
-        this.filter = filter;
-        this.channel = channel;
-        this.sender = sender;
-        this.text = text;
-    }
-}
-
-export enum TokenType {
-    Text,
-    Token,
-    Unknown
-}
-
-export class TokenItem {
-    type: TokenType;
-    cmd: number;
-    param: ArrayBuffer;
-    text: string;
-
-    constructor(type: TokenType, cmd: number, param: ArrayBuffer, text: string) {
-        this.type = type;
-        this.cmd = cmd;
-        this.param = param;
-        this.text = text;
-    }
-
-    static FromText(text: string): TokenItem {
-        return new TokenItem(TokenType.Text, 0, new ArrayBuffer(0), text);
-    }
-
-    static FromToken(cmd: number, param: ArrayBuffer): TokenItem {
-        return new TokenItem(TokenType.Token, cmd, param, "");
-    }
-
-    public ToString(): string {
-        switch (this.type) {
-            case TokenType.Text:
-                return this.text;
-            case TokenType.Token:
-                return "[" + ('00' + this.cmd.toString(16)).slice(-2) + "|" + buf2hex(this.param) + "]";
-            case TokenType.Unknown:
-            default:
-                return "[Unknown]";
-        }
-    }
-}
-
-export class TokenText {
-    items: TokenItem[]
-
-    constructor(items: TokenItem[]) {
-        this.items = items;
-    }
-
-    public ToString(): string {
-        let str = "";
-        for (let i = 0; i < this.items.length; i++) {
-            str += this.items[i].ToString();
-        }
-        return str;
-    }
-}
+import { TokenText, Message, TokenItem } from "./message";
 
 export class BinLogParser {
     public parse(dat: ArrayBuffer): Message[] {
@@ -130,7 +60,6 @@ export class BinLogParser {
         let sender = new TokenText([]);
         if (col2 > 9) {
             sender = this.parse_token_text(dat.slice(9, col2));
-            // console.log(sender, this.buf2hex(dat.slice(9, col2)));
         }
 
         const text = this.parse_token_text(dat.slice(col2 + 1));
@@ -166,8 +95,36 @@ export class BinLogParser {
 
 }
 
-export function buf2hex(buffer: ArrayBuffer) { // buffer is an ArrayBuffer
-    return [...new Uint8Array(buffer)]
-        .map(x => ('00' + x.toString(16)).slice(-2))
-        .join(' ');
+export function decodeNumber(buffer: ArrayBuffer): number {
+    let dw = new DataView(buffer);
+    let number = 0;
+    const first = dw.getUint8(0)
+    if (first <= 0xCF) return first - 1;
+
+    let offset = 1;
+    if (first & 0xF0) {
+        let bit = (first & 0x0F) + 1;
+        for (let i = 3; i >= 0; i--) {
+            if (bit & (1 << i)) {
+                number += (dw.getUint8(offset++) << (i * 8));
+            }
+        }
+        return number;
+    }
+    return -1;
+}
+
+export function decodeNumberLen(buffer: ArrayBuffer): number {
+    let dw = new DataView(buffer);
+    const first = dw.getUint8(0);
+    if (first <= 0xCF) return 1;
+    if (first & 0xF0) {
+        let bit = (first & 0x0F) + 1;
+        let cnt = 0;
+        for (let i = 0; i < 4; i++) {
+            if (bit & (1 << i)) cnt++;
+        }
+        return cnt + 1;
+    }
+    return 1;
 }
