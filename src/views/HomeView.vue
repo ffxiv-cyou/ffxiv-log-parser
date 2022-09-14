@@ -3,12 +3,13 @@
     <form class="pure-form">
       <fieldset>
         <legend>请选择你的日志文件</legend>
-        <input ref="file" type="file" accept=".log" placeholder="ACT" />
+        <input ref="file" type="file" accept=".log" placeholder="ACT" multiple />
         <a @click="parse" class="pure-button pure-button-primary">处理</a>
       </fieldset>
+      <FilterSetting :filter="filter"/>
     </form>
     <div class="message-list">
-      <Message class="message-item" v-for="(item, index) in messages" :msg="item" />
+      <Message class="message-item" v-for="(item, index) in filterMessages" :msg="item" />
     </div>
   </div>
 </template>
@@ -18,11 +19,13 @@ import type { Message } from '@/model/message';
 import { Component, Ref, Vue } from 'vue-facing-decorator'
 import { BinLogParser } from '../model/binlog_parser'
 import MessageComponent from '@/component/Message.vue';
+import FilterSetting from '@/component/FilterSetting.vue';
 import { initTooltip } from '@thewakingsands/kit-tooltip';
 
 @Component({
   components: {
-    Message: MessageComponent
+    Message: MessageComponent,
+    FilterSetting: FilterSetting
   }
 })
 export default class Home extends Vue {
@@ -30,21 +33,34 @@ export default class Home extends Vue {
   readonly file!: HTMLInputElement
 
   messages: Message[] = [];
+  filter = new Map<number, boolean>;
 
-  public parse() {
-    if (this.file.files !== null) {
-      const f = this.file.files[0];
+  get filterMessages(): Message[] {
+    return this.messages.filter((x) => this.filter.get(x.filter) === true);
+  }
 
+  parseFile(file: File): Promise<ArrayBuffer> {
+    return new Promise<ArrayBuffer>((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsArrayBuffer(f);
+      reader.readAsArrayBuffer(file);
       reader.onload = (evt) => {
-        if (evt.target !== null) {
-          const parser = new BinLogParser();
-          this.messages = parser.parse(evt.target.result as ArrayBuffer);
-        }
-      };
-      reader.onerror = (evt) => {
-        console.log(evt);
+        if (evt.target !== null) resolve(evt.target.result as ArrayBuffer);
+        else reject("empty return");
+      }
+      reader.onerror = reject;
+    });
+  }
+
+  public async parse() {
+    if (this.file.files !== null) {
+      const parser = new BinLogParser();
+
+      this.messages = [];
+      for (let i = 0; i < this.file.files.length; i++) {
+        const file = this.file.files[i];
+        const buffer = await this.parseFile(file);
+        this.messages.push(...parser.parse(buffer));
+        console.log(this.messages.length);
       }
     }
     return false;

@@ -1,0 +1,367 @@
+[
+  [
+    {
+      "ID": 10,
+      "Name": "说话",
+      "Category": 1,
+      "DisplayOrder": 1
+    },
+    {
+      "ID": 30,
+      "Name": "呼喊",
+      "Category": 1,
+      "DisplayOrder": 2
+    },
+    {
+      "ID": 11,
+      "Name": "喊话",
+      "Category": 1,
+      "DisplayOrder": 3
+    },
+    {
+      "ID": 12,
+      "Name": "悄悄话",
+      "Category": 1,
+      "DisplayOrder": 4
+    },
+    {
+      "ID": 14,
+      "Name": "小队",
+      "Category": 1,
+      "DisplayOrder": 5
+    },
+    {
+      "ID": 15,
+      "Name": "团队",
+      "Category": 1,
+      "DisplayOrder": 6
+    },
+    {
+      "ID": 24,
+      "Name": "部队",
+      "Category": 1,
+      "DisplayOrder": 7
+    },
+    {
+      "ID": 36,
+      "Name": "战队",
+      "Category": 1,
+      "DisplayOrder": 8
+    },
+    {
+      "ID": 37,
+      "Name": "跨服通讯贝1",
+      "Category": 1,
+      "DisplayOrder": 10
+    },
+    {
+      "ID": 101,
+      "Name": "跨服通讯贝2",
+      "Category": 1,
+      "DisplayOrder": 11
+    },
+    {
+      "ID": 102,
+      "Name": "跨服通讯贝3",
+      "Category": 1,
+      "DisplayOrder": 12
+    },
+    {
+      "ID": 103,
+      "Name": "跨服通讯贝4",
+      "Category": 1,
+      "DisplayOrder": 13
+    },
+    {
+      "ID": 104,
+      "Name": "跨服通讯贝5",
+      "Category": 1,
+      "DisplayOrder": 14
+    },
+    {
+      "ID": 105,
+      "Name": "跨服通讯贝6",
+      "Category": 1,
+      "DisplayOrder": 15
+    },
+    {
+      "ID": 106,
+      "Name": "跨服通讯贝7",
+      "Category": 1,
+      "DisplayOrder": 16
+    },
+    {
+      "ID": 107,
+      "Name": "跨服通讯贝8",
+      "Category": 1,
+      "DisplayOrder": 17
+    },
+    {
+      "ID": 16,
+      "Name": "通讯贝1",
+      "Category": 1,
+      "DisplayOrder": 20
+    },
+    {
+      "ID": 17,
+      "Name": "通讯贝2",
+      "Category": 1,
+      "DisplayOrder": 21
+    },
+    {
+      "ID": 18,
+      "Name": "通讯贝3",
+      "Category": 1,
+      "DisplayOrder": 22
+    },
+    {
+      "ID": 19,
+      "Name": "通讯贝4",
+      "Category": 1,
+      "DisplayOrder": 23
+    },
+    {
+      "ID": 20,
+      "Name": "通讯贝5",
+      "Category": 1,
+      "DisplayOrder": 24
+    },
+    {
+      "ID": 21,
+      "Name": "通讯贝6",
+      "Category": 1,
+      "DisplayOrder": 25
+    },
+    {
+      "ID": 22,
+      "Name": "通讯贝7",
+      "Category": 1,
+      "DisplayOrder": 26
+    },
+    {
+      "ID": 23,
+      "Name": "通讯贝8",
+      "Category": 1,
+      "DisplayOrder": 27
+    },
+    {
+      "ID": 27,
+      "Name": "新人频道",
+      "Category": 1,
+      "DisplayOrder": 28
+    },
+    {
+      "ID": 29,
+      "Name": "情感动作",
+      "Category": 1,
+      "DisplayOrder": 30
+    },
+    {
+      "ID": 28,
+      "Name": "自定义情感动作",
+      "Category": 1,
+      "DisplayOrder": 31
+    }
+  ],[
+    {
+      "ID": 57,
+      "Name": "系统信息",
+      "Category": 2,
+      "DisplayOrder": 1
+    },
+    {
+      "ID": 58,
+      "Name": "战斗系统信息",
+      "Category": 2,
+      "DisplayOrder": 2
+    },
+    {
+      "ID": 59,
+      "Name": "采集系统信息",
+      "Category": 2,
+      "DisplayOrder": 4
+    },
+    {
+      "ID": 60,
+      "Name": "错误信息",
+      "Category": 2,
+      "DisplayOrder": 5
+    },
+    {
+      "ID": 56,
+      "Name": "默语",
+      "Category": 2,
+      "DisplayOrder": 6
+    },
+    {
+      "ID": 75,
+      "Name": "新人频道通知",
+      "Category": 2,
+      "DisplayOrder": 10
+    },
+    {
+      "ID": 69,
+      "Name": "部队通告",
+      "Category": 2,
+      "DisplayOrder": 11
+    },
+    {
+      "ID": 77,
+      "Name": "战队通告",
+      "Category": 2,
+      "DisplayOrder": 12
+    },
+    {
+      "ID": 70,
+      "Name": "部队成员上线通知",
+      "Category": 2,
+      "DisplayOrder": 13
+    },
+    {
+      "ID": 78,
+      "Name": "战队成员上线通知",
+      "Category": 2,
+      "DisplayOrder": 14
+    },
+    {
+      "ID": 71,
+      "Name": "市场出售信息",
+      "Category": 2,
+      "DisplayOrder": 15
+    },
+    {
+      "ID": 61,
+      "Name": "非玩家角色对话",
+      "Category": 2,
+      "DisplayOrder": 16
+    },
+    {
+      "ID": 68,
+      "Name": "非玩家角色通告",
+      "Category": 2,
+      "DisplayOrder": 17
+    },
+    {
+      "ID": 62,
+      "Name": "掉落品信息",
+      "Category": 2,
+      "DisplayOrder": 20
+    },
+    {
+      "ID": 64,
+      "Name": "成长信息",
+      "Category": 2,
+      "DisplayOrder": 25
+    },
+    {
+      "ID": 65,
+      "Name": "战利品信息",
+      "Category": 2,
+      "DisplayOrder": 30
+    },
+    {
+      "ID": 66,
+      "Name": "制作信息",
+      "Category": 2,
+      "DisplayOrder": 35
+    },
+    {
+      "ID": 67,
+      "Name": "采集信息/他人的钓鱼成果",
+      "Category": 2,
+      "DisplayOrder": 40
+    },
+    {
+      "ID": 72,
+      "Name": "队员招募的通知信息",
+      "Category": 2,
+      "DisplayOrder": 45
+    },
+    {
+      "ID": 73,
+      "Name": "标记设置信息",
+      "Category": 2,
+      "DisplayOrder": 46
+    },
+    {
+      "ID": 74,
+      "Name": "掷骰的信息",
+      "Category": 2,
+      "DisplayOrder": 47
+    },
+    {
+      "ID": 76,
+      "Name": "管弦乐琴的播放信息",
+      "Category": 2,
+      "DisplayOrder": 48
+    },
+    {
+      "ID": 79,
+      "Name": "交流簿的新留言",
+      "Category": 2,
+      "DisplayOrder": 49
+    },
+    {
+      "ID": 55,
+      "Name": "闹钟通知信息",
+      "Category": 2,
+      "DisplayOrder": 50
+    }
+  ],
+  [
+    {
+      "ID": 41,
+      "Name": "伤害",
+      "Category": 4,
+      "DisplayOrder": 1
+    },
+    {
+      "ID": 42,
+      "Name": "回避",
+      "Category": 4,
+      "DisplayOrder": 2
+    },
+    {
+      "ID": 43,
+      "Name": "技能",
+      "Category": 4,
+      "DisplayOrder": 3
+    },
+    {
+      "ID": 44,
+      "Name": "道具",
+      "Category": 4,
+      "DisplayOrder": 4
+    },
+    {
+      "ID": 45,
+      "Name": "恢复",
+      "Category": 4,
+      "DisplayOrder": 5
+    },
+    {
+      "ID": 46,
+      "Name": "强化状态",
+      "Category": 4,
+      "DisplayOrder": 6
+    },
+    {
+      "ID": 47,
+      "Name": "弱化状态",
+      "Category": 4,
+      "DisplayOrder": 7
+    },
+    {
+      "ID": 48,
+      "Name": "强化状态效果消失",
+      "Category": 4,
+      "DisplayOrder": 15
+    },
+    {
+      "ID": 49,
+      "Name": "弱化状态效果消失",
+      "Category": 4,
+      "DisplayOrder": 16
+    }
+  ]
+]
