@@ -33,6 +33,10 @@ export default class TokenTextComponent extends Vue {
 .color2 {
     text-shadow: 0.5px 0.5px 2px var(--color), -0.5px 0.5px 2px var(--color), 0.5px -0.5px 2px var(--color), -0.5px -0.5px 2px var(--color);
 }
+.link,
+auto-translate {
+    user-select: all;
+}
 .link:hover {
     background: rgba(128,128,128,0.2);
 }

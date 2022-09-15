@@ -113,7 +113,7 @@ export class TokenItem {
             case 0x2E: // 定型文
                 const group = decodeNumber(this.param);
                 const compID = decodeNumber(this.param.slice(decodeNumberLen(this.param)));
-                return '<icon type="auto-trans-left" /><auto-translate group="' + group + '" id="' + compID + '"></auto-translate><icon type="auto-trans-right" />';
+                return '<icon type="auto-trans-left" /><auto-translate group="' + group + '" cid="' + compID + '"></auto-translate><icon type="auto-trans-right" />';
             case 0x48: // 样式1
                 const colorMap1 = decodeNumber(this.param);
                 if (colorMap1 === 0) return '</span>';

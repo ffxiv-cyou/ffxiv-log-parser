@@ -22,6 +22,8 @@ import MessageComponent from '@/component/Message.vue';
 import FilterSetting from '@/component/FilterSetting.vue';
 import { initTooltip } from '@thewakingsands/kit-tooltip';
 
+import("@/model/auto_translate");
+
 @Component({
   components: {
     Message: MessageComponent,
@@ -33,7 +35,7 @@ export default class Home extends Vue {
   readonly file!: HTMLInputElement
 
   messages: Message[] = [];
-  filter = new Map<number, boolean>;
+  filter = new Map<number, boolean>();
 
   get filterMessages(): Message[] {
     return this.messages.filter((x) => this.filter.get(x.filter) === true);
@@ -54,13 +56,22 @@ export default class Home extends Vue {
   public async parse() {
     if (this.file.files !== null) {
       const parser = new BinLogParser();
-
-      this.messages = [];
+      
+      let files = [];
       for (let i = 0; i < this.file.files.length; i++) {
         const file = this.file.files[i];
+        files.push(file);
+      }
+      files.sort((a, b) => {
+          return a.name > b.name ? 1 : (a.name === b.name ? 0 : -1) ;
+      });
+
+      this.messages = [];
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
         const buffer = await this.parseFile(file);
         this.messages.push(...parser.parse(buffer));
-        console.log(this.messages.length);
       }
     }
     return false;
