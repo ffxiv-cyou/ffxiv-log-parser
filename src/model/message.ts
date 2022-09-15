@@ -111,7 +111,7 @@ export class TokenItem {
                         return '<a class="link unknown" detail="' + buf2hex(this.param) + '">'
                 }
             case 0x2E: // 定型文
-                const group = decodeNumber(this.param);
+                const group = decodeNumber(this.param) + 1;
                 const compID = decodeNumber(this.param.slice(decodeNumberLen(this.param)));
                 return '<icon type="auto-trans-left" /><auto-translate group="' + group + '" cid="' + compID + '"></auto-translate><icon type="auto-trans-right" />';
             case 0x48: // 样式1
