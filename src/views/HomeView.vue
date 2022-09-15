@@ -86,18 +86,5 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: "FFXIV";
-  src: url("../assets/FFXIV_Lodestone_SSF.ttf") format("truetype"),
-    url("../assets/FFXIV_Lodestone_SSF.woff") format("woff");
-  unicode-range: U+E020-E0DB;
-}
 
-.message-item {
-  font-family: "思源黑体", "Franklin Gothic Medium", "Arial Narrow", Arial,
-    sans-serif, "FFXIV";
-}
-.message-item span + span {
-  padding-left: 1em;
-}
 </style>

@@ -76,11 +76,11 @@ export class TokenItem {
                 const targetType = decodeNumber(this.param);
                 switch (targetType) {
                     case 0x00: // 玩家
-                        return '<a class="player">';
+                        return '<a class="link player">';
                     case 0x02: // 物品
                         let itemID = decodeNumber(this.param.slice(1));
                         if (itemID > 1000000) itemID -= 1000000;
-                        return '<a class="item" item-id="' + itemID + '">'
+                        return '<a class="link item" item-id="' + itemID + '">'
                     case 0x03: // 地图
                         {
                             let offset = 1;
@@ -91,29 +91,29 @@ export class TokenItem {
                             const yPos = decodeNumber(this.param.slice(offset));
                             offset += decodeNumberLen(this.param.slice(offset));
 
-                            return '<a class="map" map-id="' + (tmID & 0xFFFF) + '" x="' + xPos + '" y="' + yPos + '">'
+                            return '<a class="link map" map-id="' + (tmID & 0xFFFF) + '" x="' + xPos + '" y="' + yPos + '">'
                         }
                     case 0x05: // 成就
                         {
                             const achievementID = decodeNumber(this.param.slice(1));
-                            return '<a class"achievement" achievement-id="' + achievementID + '">';
+                            return '<a class="link achievement" achievement-id="' + achievementID + '">';
                         }
                     case 0x07: // 招募板
-                        return '<a class="party-finder">';
+                        return '<a class="link party-finder">';
                     case 0x08: // Buff
                         const buffID = decodeNumber(this.param.slice(1));
-                        return '<a class="buff" buff-id="' + buffID + '">';
+                        return '<a class="link buff" buff-id="' + buffID + '">';
                     case 0x09: // 队员招募
-                        return '<a class="party-f">';
+                        return '<a class="link party-f">';
                     case 0xce: // 结束
                         return '</a>'
                     default:
-                        return '<a class="unknown" detail="' + buf2hex(this.param) + '">'
+                        return '<a class="link unknown" detail="' + buf2hex(this.param) + '">'
                 }
             case 0x2E: // 定型文
                 const group = decodeNumber(this.param);
                 const compID = decodeNumber(this.param.slice(decodeNumberLen(this.param)));
-                return '<icon type="auto-trans-left" /><at group="' + group + '" id="' + compID + '"/><icon type="auto-trans-right" />';
+                return '<icon type="auto-trans-left" /><auto-translate group="' + group + '" id="' + compID + '"></auto-translate><icon type="auto-trans-right" />';
             case 0x48: // 样式1
                 const colorMap1 = decodeNumber(this.param);
                 if (colorMap1 === 0) return '</span>';
