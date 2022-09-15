@@ -1,0 +1,148 @@
+.filter-10 {
+    --default-color: #F7F7F7;
+}
+
+.filter-30 {
+    --default-color: #ffff00;
+}
+
+.filter-11 {
+    --default-color: #ffa666;
+}
+
+.filter-12 {
+    --default-color: #ffb8de;
+}
+
+.filter-14 {
+    --default-color: #66e5ff;
+}
+
+.filter-15 {
+    --default-color: #ff7f00;
+}
+
+/* 情感动作 */
+.filter-28,
+.filter-29 {
+    --default-color: #bafff0;
+}
+
+.filter-24,
+.filter-36 {
+    --default-color: #abdbe5;
+}
+
+/* 跨服贝 */
+.filter-37,
+.filter-101,
+.filter-102,
+.filter-103,
+.filter-104,
+.filter-105,
+.filter-106,
+.filter-107 {
+    --default-color: #d4ff7d;
+}
+
+/* 通讯贝 */
+.filter-16,
+.filter-17,
+.filter-18,
+.filter-19,
+.filter-20,
+.filter-21,
+.filter-22,
+.filter-23 {
+    --default-color: #d4ff7d;
+}
+
+/* 新人频道 */
+.filter-27 {
+    --default-color: #d4ff7d;
+}
+
+.filter-56,
+.filter-57,
+.filter-58,
+.filter-59,
+.filter-71 {
+    --default-color: #CCCCCC;
+}
+
+.filter-60 {
+    --default-color: #ff4a4a;
+}
+
+.filter-75 {
+    --default-color: #d4ff7d;
+}
+
+.filter-69,
+.filter-70,
+.filter-77,
+.filter-78 {
+    --default-color: #abdbe5;
+}
+
+.filter-61,
+.filter-68 {
+    --default-color: #abd647;
+}
+
+.filter-62 {
+    --default-color: #ffffb0;
+}
+
+.filter-64 {
+    --default-color: #ffde73;
+}
+
+.filter-65 {
+    --default-color: #c7bf9e;
+}
+
+.filter-66,
+.filter-67 {
+    --default-color: #debff7;
+}
+
+/* 其他通知 */
+.filter-72,
+.filter-73,
+.filter-74,
+.filter-76,
+.filter-79,
+.filter-55 {
+    --default-color: #CCCCCC;
+}
+
+.filter-41 {
+    --default-color: #ff7d7d;
+}
+
+.filter-42 {
+    --default-color: #CCCCCC;
+}
+
+.filter-43 {
+    --default-color: #ffffb0;
+}
+
+.filter-44 {
+    --default-color: #ffffb0;
+}
+
+.filter-45 {
+    --default-color: #d4ff7d;
+}
+
+.filter-46,
+.filter-48 {
+    --default-color: #94bfff;
+}
+
+.filter-47,
+.filter-49 {
+    --default-color: #ff8ac4;
+}

@@ -31,7 +31,7 @@ export default class TokenTextComponent extends Vue {
     color: var(--color);
 }
 .color2 {
-    text-shadow: 0.5px 0.5px 2px var(--color), -0.5px 0.5px 2px var(--color), 0.5px -0.5px 2px var(--color), -0.5px -0.5px 2px var(--color);
+    text-shadow: 0.5px 0.5px 1px var(--color), -0.5px 0.5px 1px var(--color), 0.5px -0.5px 1px var(--color), -0.5px -0.5px 1px var(--color);
 }
 .link,
 auto-translate {

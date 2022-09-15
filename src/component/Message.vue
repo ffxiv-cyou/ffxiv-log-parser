@@ -3,11 +3,13 @@
         <span class="time">[{{ time }}]</span>
         <span class="channel">{{ channel }}</span>
         <span class="filter">{{ filter }}</span>
-        <span class="sender">
-            <TokenText :token="sender" />
-        </span>
-        <span>
-            <TokenText :token="content" />
+        <span class="text-body">
+            <span class="sender">
+                <TokenText :token="sender" />
+            </span>
+            <span>
+                <TokenText :token="content" />
+            </span>
         </span>
     </div>
 </template>
@@ -18,6 +20,7 @@ import type { Message, TokenText } from '@/model/message';
 import TokenTextComponent from './TokenText.vue';
 import '@/assets/UIColor.css'
 import '@/assets/LogKind.css'
+import '@/assets/LogFilterColor.css'
 
 @Component({
     components: {
@@ -59,14 +62,16 @@ export default class MessageComponent extends Vue {
 }
 
 .message {
-    font-family: "思源黑体", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    font-family: "思源黑体", "微软雅黑", Arial,
         sans-serif, "FFXIV";
+    line-height: 1.3em;
 }
 
 .message .time {
-    margin-right: 1em;
-    font-family: 'Courier New', Courier, monospace;
+    margin-right: 0.2em;
+    color: white;
 }
+
 .message .channel,
 .message .filter {
     display: none;
@@ -75,10 +80,22 @@ export default class MessageComponent extends Vue {
 .message .sender::before {
     content: var(--prefix);
 }
+
 .message .sender::after {
     content: var(--suffix);
 }
+
 .message .sender {
     display: var(--visible);
+}
+
+.message {
+    --shadow: rgba(0, 0, 0, 1);
+    text-shadow: 0.5px 0.5px 1px var(--shadow), -0.5px 0.5px 1px var(--shadow), 0.5px -0.5px 1px var(--shadow), -0.5px -0.5px 1px var(--shadow);
+    filter: blur(0.5px) brightness(0.95);
+}
+
+.message .text-body {
+    color: var(--default-color);
 }
 </style>

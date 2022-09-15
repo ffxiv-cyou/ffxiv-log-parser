@@ -97,5 +97,8 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
-
+.message-list {
+  background-color: rgba(0,0,0,0.7);
+  padding: 10px;
+}
 </style>
