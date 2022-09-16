@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@thewakingsands/kit-tooltip": "^0.3.5",
+    "microtip": "^0.2.2",
     "purecss": "^2.1.0",
     "vue": "^3.2.38",
     "vue-facing-decorator": "^2.1.12",

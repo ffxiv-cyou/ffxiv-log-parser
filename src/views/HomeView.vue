@@ -4,17 +4,34 @@
       <form class="pure-form">
         <fieldset>
           <div class="pure-g">
-            <div class="pure-u-1-3">
-              <legend>选择日志文件</legend>
-              <input ref="file" type="file" accept=".log" placeholder="ACT" multiple @change="parse"/>
+            <div class="pure-u-1 pure-u-md-1-3">
+              <legend>
+                选择日志文件
+                <span
+                  aria-label="支持ACT日志与游戏日志，详情请看帮助。"
+                  data-microtip-position="right"
+                  role="tooltip"
+                >(?)</span>
+              </legend>
+              <input
+                ref="file"
+                type="file"
+                accept=".log"
+                placeholder="ACT"
+                multiple
+                @change="parse"
+              />
             </div>
-            <div class="pure-u-1-3">
+            <div class="pure-u-1 pure-u-md-1-3">
               <legend>设置</legend>
               <label for="show-long-time">
-                <input type="checkbox" id="show-long-time" v-model="longTime"/>
-                显示消息日期
+                <input type="checkbox" id="show-long-time" v-model="longTime" />
+                显示日期
               </label>
-              <a @click="toggleFilter" class="pure-button">消息过滤设置</a>
+              <label for="show-filter-panel" @click="toggleFilter">
+                <input type="checkbox" id="show-filter-panel" checked />
+                过滤消息
+              </label>
             </div>
           </div>
         </fieldset>
@@ -23,7 +40,13 @@
     </div>
 
     <div class="message-list">
-      <Message class="message-item" v-for="(item, index) in filterMessages" :msg="item" :longTime="longTime" />
+      <Message
+        class="message-item"
+        v-for="(item, index) in filterMessages"
+        :key="index"
+        :msg="item"
+        :longTime="longTime"
+      />
     </div>
   </div>
 </template>
@@ -36,6 +59,7 @@ import { ActLogParser } from '../model/actlog_parser'
 import MessageComponent from '@/component/Message.vue';
 import FilterSetting from '@/component/FilterSetting.vue';
 import { initTooltip } from '@thewakingsands/kit-tooltip';
+import 'microtip/microtip.css';
 
 import("@/model/auto_translate");
 
@@ -52,7 +76,8 @@ export default class Home extends Vue {
   readonly filterPanel!: FilterSetting
 
   messages: Message[] = [
-    Message.Text(new Date().getTime() / 1000, 57, 0, "", "请载入文件")
+    Message.SimpleText(57, "", "欢迎使用 FFXIV 日志解析工具"),
+    Message.SimpleText(57, "", "请选择日志文件"),
   ];
   filter = new Map<number, boolean>();
 
@@ -76,6 +101,7 @@ export default class Home extends Vue {
 
   toggleFilter() {
     this.filterPanel.show();
+    return false;
   }
 
   public async parse() {
@@ -129,5 +155,6 @@ export default class Home extends Vue {
 .message-list {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
+  margin-bottom: 20px;
 }
 </style>

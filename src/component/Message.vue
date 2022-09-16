@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Ref, Vue } from 'vue-facing-decorator'
-import type { Message, TokenText } from '@/model/message';
+import { Component, Prop, Vue } from 'vue-facing-decorator'
+import type { Message } from '@/model/message';
 import TokenTextComponent from './TokenText.vue';
 import '@/assets/UIColor.css'
 import '@/assets/LogKind.css'

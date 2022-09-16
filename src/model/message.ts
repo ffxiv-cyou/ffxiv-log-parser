@@ -20,6 +20,10 @@ export class Message {
             new TokenText([TokenItem.FromText(sender)]),
             new TokenText([TokenItem.FromText(text)]));
     }
+
+    static SimpleText(filter: number, sender: string, text: string) {
+        return this.Text(new Date().getTime() / 1000, filter, 0, sender, text);
+    }
 }
 
 export enum TokenType {

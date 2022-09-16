@@ -24,3 +24,13 @@ icon.gui-81 {
 icon.gui-95 {
     background-image: url("./icons/061547.png");
 }
+
+/* dirty hack */
+icon.gui-88 {
+    display: inline;
+}
+icon.gui-88::after {
+    content: "\e05d";
+    color: white;
+    text-shadow: 1px 1px 3px blue;
+}
