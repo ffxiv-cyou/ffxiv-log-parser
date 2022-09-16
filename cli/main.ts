@@ -20,7 +20,26 @@ function readFiles(files: string[]): Promise<any> {
             const file = files[i];
             const buffer = await readFile(file);
 
-            const msg = parser.parse(toArrayBuffer(buffer));
+            const msg = BinLogParser.parse(toArrayBuffer(buffer));
+            for (let i = 0; i < msg.length; i++) {
+                const m = msg[i];
+
+                let printK = false;
+
+                for (let j = 0; j < m.sender.items.length; j++) {
+                    const it = m.sender.items[j];
+                    printK ||= printIt(it);
+                }
+                for (let j = 0; j < m.text.items.length; j++) {
+                    const it = m.text.items[j];
+                    printK ||= printIt(it);
+                }
+
+                if (printK) {
+                    console.log(file, m.sender.ToString(), m.text.ToString());
+                }
+            }
+
             msgs.push(...msg);
             console.log(file, msg.length);
         }
@@ -32,21 +51,13 @@ function readFiles(files: string[]): Promise<any> {
             const msg = msgs[i];
             filterSet.add(msg.filter);
 
-            let printK = false;
-
             for (let j = 0; j < msg.sender.items.length; j++) {
                 const it = msg.sender.items[j];
                 cmdSet.add(it.cmd);
-                printK ||= printIt(it);
             }
             for (let j = 0; j < msg.text.items.length; j++) {
                 const it = msg.text.items[j];
                 cmdSet.add(it.cmd);
-                printK ||= printIt(it);
-            }
-
-            if (printK) {
-                console.log(msg.sender.ToString(), msg.text.ToString());
             }
         }
         // console.log(toHexArray(Uint8Array.from(filterSet).sort()));

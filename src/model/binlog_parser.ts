@@ -1,7 +1,14 @@
 import { TokenText, Message, TokenItem } from "./message";
 
 export class BinLogParser {
-    public parse(dat: ArrayBuffer): Message[] {
+    public static validate(dat: ArrayBuffer): boolean {
+        const dw = new DataView(dat, 0);
+        const bodyLen = dw.getUint32(0, true);
+        const fileLen = dw.getUint32(4, true);
+        return fileLen > bodyLen && (fileLen - bodyLen) <= 1000;
+    }
+
+    public static parse(dat: ArrayBuffer): Message[] {
         const dw = new DataView(dat, 0);
         const bodyLen = dw.getUint32(0, true);
         const fileLen = dw.getUint32(4, true);
@@ -35,7 +42,7 @@ export class BinLogParser {
         return parsedMsg;
     }
 
-    public parse_msg(dat: ArrayBuffer): Message | undefined {
+    public static parse_msg(dat: ArrayBuffer): Message | undefined {
         const dw = new DataView(dat, 0);
         const timestamp = dw.getUint32(0, true);
         const filter = dw.getUint8(4);
@@ -66,7 +73,7 @@ export class BinLogParser {
         return new Message(timestamp, filter, channel, sender, text);
     }
 
-    parse_token_text(dat: ArrayBuffer): TokenText {
+    static parse_token_text(dat: ArrayBuffer): TokenText {
         const dw = new DataView(dat, 0);
         const decoder = new TextDecoder("utf-8");
 

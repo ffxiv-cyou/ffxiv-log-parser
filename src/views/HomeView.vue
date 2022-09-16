@@ -6,8 +6,7 @@
           <div class="pure-g">
             <div class="pure-u-1-3">
               <legend>选择日志文件</legend>
-              <input ref="file" type="file" accept=".log" placeholder="ACT" multiple />
-              <a @click="parse" class="pure-button pure-button-primary">解析</a>
+              <input ref="file" type="file" accept=".log" placeholder="ACT" multiple @change="parse"/>
             </div>
             <div class="pure-u-1-3">
               <legend>设置</legend>
@@ -33,6 +32,7 @@
 import { Message } from '@/model/message';
 import { Component, Ref, Vue } from 'vue-facing-decorator'
 import { BinLogParser } from '../model/binlog_parser'
+import { ActLogParser } from '../model/actlog_parser'
 import MessageComponent from '@/component/Message.vue';
 import FilterSetting from '@/component/FilterSetting.vue';
 import { initTooltip } from '@thewakingsands/kit-tooltip';
@@ -62,7 +62,7 @@ export default class Home extends Vue {
 
   longTime = false;
 
-  parseFile(file: File): Promise<ArrayBuffer> {
+  loadFile(file: File): Promise<ArrayBuffer> {
     return new Promise<ArrayBuffer>((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsArrayBuffer(file);
@@ -80,8 +80,6 @@ export default class Home extends Vue {
 
   public async parse() {
     if (this.file.files !== null) {
-      const parser = new BinLogParser();
-
       let files = [];
       for (let i = 0; i < this.file.files.length; i++) {
         const file = this.file.files[i];
@@ -95,8 +93,14 @@ export default class Home extends Vue {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const buffer = await this.parseFile(file);
-        this.messages.push(...parser.parse(buffer));
+        const buffer = await this.loadFile(file);
+        if (BinLogParser.validate(buffer))
+          this.messages.push(...BinLogParser.parse(buffer));
+        else if (ActLogParser.validate(buffer)) {
+          this.messages.push(...ActLogParser.parse(buffer));
+        } else {
+          this.messages.push(Message.Text(new Date().getTime() / 1000, 60, 0, "", "文件格式不正确：" + file.name))
+        }
       }
     }
     return false;
