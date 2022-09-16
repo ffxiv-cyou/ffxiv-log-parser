@@ -58,7 +58,6 @@ import { BinLogParser } from '../model/binlog_parser'
 import { ActLogParser } from '../model/actlog_parser'
 import MessageComponent from '@/component/Message.vue';
 import FilterSetting from '@/component/FilterSetting.vue';
-import { initTooltip } from '@thewakingsands/kit-tooltip';
 import 'microtip/microtip.css';
 
 import("@/model/auto_translate");
@@ -130,23 +129,6 @@ export default class Home extends Vue {
       }
     }
     return false;
-  }
-
-  mounted() {
-    initTooltip({
-      context: {
-        apiBaseUrl: 'https://cafemaker.wakingsands.com',  // xivapi 或 cafemaker 的 url；最后不要有斜线
-        iconBaseUrl: 'https://cafemaker.wakingsands.com/i', // 图标 cdn 的 url；最后不要有斜线
-        defaultHq: false,  // 是否默认显示 HQ 数据
-        hideSeCopyright: false, // 是否隐藏 SE 版权信息
-      },
-      links: {
-        detectWikiLinks: true,  // 是否自动识别 wiki 物品链接
-        itemIdAttribute: 'item-id', // 自定义悬浮窗时，声明物品 ID 的属性
-        actionIdAttribute: 'action-id', // 自定义悬浮窗时，声明技能 ID 的属性
-        rootContainer: document.body, // 监控的根元素
-      },
-    })
   }
 }
 </script>
