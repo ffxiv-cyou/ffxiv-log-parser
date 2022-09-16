@@ -1,19 +1,40 @@
 <template>
-    <div class="filter-setting">
-        <div v-for="(group, gid) in filterList" class="pure-form pure-form-stacked filter-group">
-            <legend>
-                <label :for="'group-' + gid">
-                    <input type="checkbox" :id="'group-' + gid" :checked="getGroupFilter(gid)" @input="onGroupInput($event, gid)" />
-                    {{groupName[gid]}}
-                </label>
-            </legend>
-            <fieldset class="option-group">
-                <label class="option-item" v-for="(item, index) in group" :for="'filter-' + item.ID">
-                    <input type="checkbox" :id="'filter-' + item.ID" :checked="getFilter(item.ID)" @input="onFilterInput($event, item.ID)" /> {{item.Name}}
-                </label>
-            </fieldset>
+    <dialog ref="dialog">
+        <div class="filter-setting">
+            <div
+                v-for="(group, gid) in filterList"
+                class="pure-form pure-form-stacked filter-group"
+            >
+                <legend>
+                    <label :for="'group-' + gid">
+                        <input
+                            type="checkbox"
+                            :id="'group-' + gid"
+                            :checked="getGroupFilter(gid)"
+                            @input="onGroupInput($event, gid)"
+                        />
+                        {{ groupName[gid] }}
+                    </label>
+                </legend>
+                <fieldset class="option-group">
+                    <label
+                        class="option-item"
+                        v-for="(item, index) in group"
+                        :for="'filter-' + item.ID"
+                    >
+                        <input
+                            type="checkbox"
+                            :id="'filter-' + item.ID"
+                            :checked="getFilter(item.ID)"
+                            @input="onFilterInput($event, item.ID)"
+                        />
+                        {{ item.Name }}
+                    </label>
+                </fieldset>
+            </div>
         </div>
-    </div>
+        <button @click="hide" class="pure-button close-button">关闭</button>
+    </dialog>
 </template>
 
 <script lang="ts">
@@ -23,6 +44,9 @@ import type { LogFilter } from '@/model/filter';
 
 @Component
 export default class FilterSettingComponent extends Vue {
+    @Ref
+    dialog!: HTMLDialogElement;
+
     @Prop
     filter: Map<number, boolean> = new Map<number, boolean>();
 
@@ -58,6 +82,19 @@ export default class FilterSettingComponent extends Vue {
     onGroupInput(evt: Event, id: number) {
         this.setGroupFilter(id, (evt.target as HTMLInputElement).checked);
     }
+
+    mounted() {
+        this.setGroupFilter(0, true);
+        this.setGroupFilter(1, true);
+    }
+
+    public show() {
+        this.dialog.showModal();
+    }
+
+    hide() {
+        this.dialog.close();
+    }
 }
 
 </script>
@@ -71,14 +108,22 @@ export default class FilterSettingComponent extends Vue {
 }
 
 .option-item {
-    flex: 0 0 0;
+    flex: 0;
 }
 
 .filter-setting {
     display: flex;
+    flex-wrap: wrap;
+    width: 1280px;
 }
 
 .filter-group {
     flex: auto;
+}
+
+.close-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
 </style>

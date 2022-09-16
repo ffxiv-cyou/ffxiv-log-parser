@@ -1,21 +1,36 @@
 <template>
   <div>
-    <form class="pure-form">
-      <fieldset>
-        <legend>请选择你的日志文件</legend>
-        <input ref="file" type="file" accept=".log" placeholder="ACT" multiple />
-        <a @click="parse" class="pure-button pure-button-primary">处理</a>
-      </fieldset>
-      <FilterSetting :filter="filter"/>
-    </form>
+    <div>
+      <form class="pure-form">
+        <fieldset>
+          <div class="pure-g">
+            <div class="pure-u-1-3">
+              <legend>选择日志文件</legend>
+              <input ref="file" type="file" accept=".log" placeholder="ACT" multiple />
+              <a @click="parse" class="pure-button pure-button-primary">解析</a>
+            </div>
+            <div class="pure-u-1-3">
+              <legend>设置</legend>
+              <label for="show-long-time">
+                <input type="checkbox" id="show-long-time" v-model="longTime"/>
+                显示消息日期
+              </label>
+              <a @click="toggleFilter" class="pure-button">消息过滤设置</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <FilterSetting ref="filterPanel" :filter="filter" />
+    </div>
+
     <div class="message-list">
-      <Message class="message-item" v-for="(item, index) in filterMessages" :msg="item" />
+      <Message class="message-item" v-for="(item, index) in filterMessages" :msg="item" :longTime="longTime" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import type { Message } from '@/model/message';
+import { Message } from '@/model/message';
 import { Component, Ref, Vue } from 'vue-facing-decorator'
 import { BinLogParser } from '../model/binlog_parser'
 import MessageComponent from '@/component/Message.vue';
@@ -33,13 +48,19 @@ import("@/model/auto_translate");
 export default class Home extends Vue {
   @Ref
   readonly file!: HTMLInputElement
+  @Ref
+  readonly filterPanel!: FilterSetting
 
-  messages: Message[] = [];
+  messages: Message[] = [
+    Message.Text(new Date().getTime() / 1000, 57, 0, "", "请载入文件")
+  ];
   filter = new Map<number, boolean>();
 
   get filterMessages(): Message[] {
     return this.messages.filter((x) => this.filter.get(x.filter) === true);
   }
+
+  longTime = false;
 
   parseFile(file: File): Promise<ArrayBuffer> {
     return new Promise<ArrayBuffer>((resolve, reject) => {
@@ -53,21 +74,25 @@ export default class Home extends Vue {
     });
   }
 
+  toggleFilter() {
+    this.filterPanel.show();
+  }
+
   public async parse() {
     if (this.file.files !== null) {
       const parser = new BinLogParser();
-      
+
       let files = [];
       for (let i = 0; i < this.file.files.length; i++) {
         const file = this.file.files[i];
         files.push(file);
       }
       files.sort((a, b) => {
-          return a.name > b.name ? 1 : (a.name === b.name ? 0 : -1) ;
+        return a.name > b.name ? 1 : (a.name === b.name ? 0 : -1);
       });
 
       this.messages = [];
-      
+
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const buffer = await this.parseFile(file);
@@ -98,7 +123,7 @@ export default class Home extends Vue {
 
 <style scoped>
 .message-list {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
 }
 </style>

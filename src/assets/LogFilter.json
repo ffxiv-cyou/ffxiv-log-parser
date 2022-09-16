@@ -273,7 +273,7 @@
     },
     {
       "ID": 72,
-      "Name": "队员招募的通知信息",
+      "Name": "队员招募通知",
       "Category": 2,
       "DisplayOrder": 45
     },
@@ -291,7 +291,7 @@
     },
     {
       "ID": 76,
-      "Name": "管弦乐琴的播放信息",
+      "Name": "管弦乐琴信息",
       "Category": 2,
       "DisplayOrder": 48
     },
@@ -353,13 +353,13 @@
     },
     {
       "ID": 48,
-      "Name": "强化状态效果消失",
+      "Name": "强化状态消失",
       "Category": 4,
       "DisplayOrder": 15
     },
     {
       "ID": 49,
-      "Name": "弱化状态效果消失",
+      "Name": "弱化状态消失",
       "Category": 4,
       "DisplayOrder": 16
     }

@@ -38,6 +38,6 @@ auto-translate {
     user-select: all;
 }
 .link:hover {
-    background: rgba(128,128,128,0.2);
+    background: rgba(128,128,128,0.4);
 }
 </style>

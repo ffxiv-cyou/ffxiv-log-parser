@@ -14,6 +14,12 @@ export class Message {
         this.sender = sender;
         this.text = text;
     }
+
+    static Text(time: number, filter: number, channel: number, sender: string, text: string) {
+        return new Message(time, filter, channel,
+            new TokenText([TokenItem.FromText(sender)]),
+            new TokenText([TokenItem.FromText(text)]));
+    }
 }
 
 export enum TokenType {
@@ -122,7 +128,7 @@ export class TokenItem {
                 const colorMap2 = decodeNumber(this.param);
                 if (colorMap2 === 0) return '</span>';
                 return '<span class="color2 plate-' + colorMap2 + '">';
-            default: 
+            default:
                 return this.ToString();
         }
     }

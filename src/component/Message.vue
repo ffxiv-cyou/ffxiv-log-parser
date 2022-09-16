@@ -1,14 +1,12 @@
 <template>
     <div class="message" :class="'filter-' + msg.filter">
         <span class="time">[{{ time }}]</span>
-        <span class="channel">{{ channel }}</span>
-        <span class="filter">{{ filter }}</span>
         <span class="text-body">
             <span class="sender">
-                <TokenText :token="sender" />
+                <TokenText :token="msg.sender" />
             </span>
             <span>
-                <TokenText :token="content" />
+                <TokenText :token="msg.text" />
             </span>
         </span>
     </div>
@@ -31,24 +29,12 @@ export default class MessageComponent extends Vue {
     @Prop
     msg!: Message;
 
+    @Prop
+    longTime!: boolean;
+
     get time(): string {
+        if (this.longTime) return this.msg.time.toLocaleString();
         return this.msg.time.toLocaleTimeString();
-    }
-
-    get channel(): number {
-        return this.msg.channel;
-    }
-
-    get filter(): number {
-        return this.msg.filter;
-    }
-
-    get sender(): TokenText {
-        return this.msg.sender;
-    }
-
-    get content(): TokenText {
-        return this.msg.text;
     }
 }
 </script>
@@ -62,8 +48,7 @@ export default class MessageComponent extends Vue {
 }
 
 .message {
-    font-family: "思源黑体", "微软雅黑", Arial,
-        sans-serif, "FFXIV";
+    font-family: "思源黑体", "微软雅黑", Arial, sans-serif, "FFXIV";
     line-height: 1.3em;
 }
 
@@ -91,11 +76,16 @@ export default class MessageComponent extends Vue {
 
 .message {
     --shadow: rgba(0, 0, 0, 1);
-    text-shadow: 0.5px 0.5px 1px var(--shadow), -0.5px 0.5px 1px var(--shadow), 0.5px -0.5px 1px var(--shadow), -0.5px -0.5px 1px var(--shadow);
+    text-shadow: 0.5px 0.5px 1px var(--shadow), -0.5px 0.5px 1px var(--shadow),
+        0.5px -0.5px 1px var(--shadow), -0.5px -0.5px 1px var(--shadow);
     filter: blur(0.5px) brightness(0.95);
 }
 
 .message .text-body {
     color: var(--default-color);
+}
+
+.message ::selection {
+    background: rgba(255, 255, 255, 0.25);
 }
 </style>
