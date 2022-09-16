@@ -1,0 +1,26 @@
+icon.gui {
+    background: center/24px no-repeat;
+    width: 24px;
+    display: inline-block;
+    height: 21px;
+    vertical-align: bottom;
+}
+
+icon.gui-77 {
+    background-image: url("./icons/061523.png");
+}
+icon.gui-78 {
+    background-image: url("./icons/061540.png");
+}
+icon.gui-79 {
+    background-image: url("./icons/061542.png");
+}
+icon.gui-80 {
+    background-image: url("./icons/061543.png");
+}
+icon.gui-81 {
+    background-image: url("./icons/061544.png");
+}
+icon.gui-95 {
+    background-image: url("./icons/061547.png");
+}

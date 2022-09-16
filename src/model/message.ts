@@ -75,7 +75,7 @@ export class TokenItem {
         switch (this.cmd) {
             case 0x12: // 图标
                 const id = decodeNumber(this.param);
-                return '<icon type="' + id + '" />';
+                return '<icon class="gui gui-' + id + '"></icon>';
             case 0x13: // 设置颜色
                 return ''; // 忽略
             case 0x27: // 链接到目标

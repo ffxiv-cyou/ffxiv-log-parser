@@ -19,6 +19,8 @@ import TokenTextComponent from './TokenText.vue';
 import '@/assets/UIColor.css'
 import '@/assets/LogKind.css'
 import '@/assets/LogFilterColor.css'
+import '@/assets/LogFilterColor.css'
+import '@/assets/Icon.css'
 
 @Component({
     components: {
