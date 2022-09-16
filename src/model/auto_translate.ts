@@ -23,7 +23,7 @@ class AutoTranslate extends HTMLElement {
         if (group && id) {
             var groupID = parseInt(group);
             var itemID = parseInt(id);
-            this.innerText = translates[groupID][itemID];
+            this.innerText = (translates as any)[groupID][itemID];
         }
     }
 }
