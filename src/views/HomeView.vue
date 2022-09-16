@@ -11,7 +11,8 @@
                   aria-label="支持ACT日志与游戏日志，详情请看帮助。"
                   data-microtip-position="right"
                   role="tooltip"
-                >(?)</span>
+                  >(?)</span
+                >
               </legend>
               <input
                 ref="file"
@@ -25,11 +26,11 @@
             <div class="pure-u-1 pure-u-md-1-3">
               <legend>设置</legend>
               <label for="show-long-time">
-                <input type="checkbox" id="show-long-time" v-model="longTime" />
+                <input id="show-long-time" v-model="longTime" type="checkbox" />
                 显示日期
               </label>
               <label for="show-filter-panel" @click="toggleFilter">
-                <input type="checkbox" id="show-filter-panel" checked />
+                <input id="show-filter-panel" type="checkbox" checked />
                 过滤消息
               </label>
             </div>
@@ -41,38 +42,38 @@
 
     <div class="message-list">
       <Message
-        class="message-item"
         v-for="(item, index) in filterMessages"
         :key="index"
+        class="message-item"
         :msg="item"
-        :longTime="longTime"
+        :long-time="longTime"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Message } from '@/model/message';
-import { Component, Ref, Vue } from 'vue-facing-decorator'
-import { BinLogParser } from '../model/binlog_parser'
-import { ActLogParser } from '../model/actlog_parser'
-import MessageComponent from '@/component/Message.vue';
-import FilterSetting from '@/component/FilterSetting.vue';
-import 'microtip/microtip.css';
+import { Message } from "@/model/message";
+import { Component, Ref, Vue } from "vue-facing-decorator";
+import { BinLogParser } from "../model/binlog_parser";
+import { ActLogParser } from "../model/actlog_parser";
+import MessageComponent from "@/component/Message.vue";
+import FilterSetting from "@/component/FilterSetting.vue";
+import "microtip/microtip.css";
 
 import("@/model/auto_translate");
 
 @Component({
   components: {
     Message: MessageComponent,
-    FilterSetting: FilterSetting
-  }
+    FilterSetting: FilterSetting,
+  },
 })
 export default class Home extends Vue {
   @Ref
-  readonly file!: HTMLInputElement
+  readonly file!: HTMLInputElement;
   @Ref
-  readonly filterPanel!: FilterSetting
+  readonly filterPanel!: FilterSetting;
 
   messages: Message[] = [
     Message.SimpleText(57, "", "欢迎使用 FFXIV 日志解析工具"),
@@ -93,7 +94,7 @@ export default class Home extends Vue {
       reader.onload = (evt) => {
         if (evt.target !== null) resolve(evt.target.result as ArrayBuffer);
         else reject("empty return");
-      }
+      };
       reader.onerror = reject;
     });
   }
@@ -105,13 +106,13 @@ export default class Home extends Vue {
 
   public async parse() {
     if (this.file.files !== null) {
-      let files = [];
+      const files = [];
       for (let i = 0; i < this.file.files.length; i++) {
         const file = this.file.files[i];
         files.push(file);
       }
       files.sort((a, b) => {
-        return a.name > b.name ? 1 : (a.name === b.name ? 0 : -1);
+        return a.name > b.name ? 1 : a.name === b.name ? 0 : -1;
       });
 
       this.messages = [];
@@ -124,7 +125,15 @@ export default class Home extends Vue {
         else if (ActLogParser.validate(buffer)) {
           this.messages.push(...ActLogParser.parse(buffer));
         } else {
-          this.messages.push(Message.Text(new Date().getTime() / 1000, 60, 0, "", "文件格式不正确：" + file.name))
+          this.messages.push(
+            Message.Text(
+              new Date().getTime() / 1000,
+              60,
+              0,
+              "",
+              "文件格式不正确：" + file.name
+            )
+          );
         }
       }
     }

@@ -1,6 +1,6 @@
 export class LogFilter {
-    ID!: number
-    Name!: string
-    Category!: number
-    DisplayOrder!: number
+  ID!: number;
+  Name!: string;
+  Category!: number;
+  DisplayOrder!: number;
 }

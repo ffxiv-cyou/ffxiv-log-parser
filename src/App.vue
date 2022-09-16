@@ -13,20 +13,20 @@
   </div>
   <footer>
     &copy; 2022
-    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | ALL FINAL FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
+    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | ALL FINAL
+    FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
   </footer>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-facing-decorator'
-import HomePage from '@/views/HomeView.vue'
+import { Component, Vue } from "vue-facing-decorator";
+import HomePage from "@/views/HomeView.vue";
 @Component({
   components: {
-    HomePage: HomePage
-  }
+    HomePage: HomePage,
+  },
 })
-export default class App extends Vue {
-}
+export default class App extends Vue {}
 </script>
 
 <style scoped>

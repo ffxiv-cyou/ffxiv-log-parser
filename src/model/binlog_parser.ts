@@ -1,137 +1,136 @@
 import { TokenText, Message, TokenItem } from "./message";
 
 export class BinLogParser {
-    public static validate(dat: ArrayBuffer): boolean {
-        const dw = new DataView(dat, 0);
-        const bodyLen = dw.getUint32(0, true);
-        const fileLen = dw.getUint32(4, true);
-        return fileLen > bodyLen && (fileLen - bodyLen) <= 1000;
+  public static validate(dat: ArrayBuffer): boolean {
+    const dw = new DataView(dat, 0);
+    const bodyLen = dw.getUint32(0, true);
+    const fileLen = dw.getUint32(4, true);
+    return fileLen > bodyLen && fileLen - bodyLen <= 1000;
+  }
+
+  public static parse(dat: ArrayBuffer): Message[] {
+    const dw = new DataView(dat, 0);
+    const bodyLen = dw.getUint32(0, true);
+    const fileLen = dw.getUint32(4, true);
+    let offset = 8;
+    const trunkCount = fileLen - bodyLen;
+
+    const posArray = [];
+    for (let i = 0; i < trunkCount; i++) {
+      const endPos = dw.getUint32(offset + i * 4, true);
+      posArray.push(endPos);
     }
 
-    public static parse(dat: ArrayBuffer): Message[] {
-        const dw = new DataView(dat, 0);
-        const bodyLen = dw.getUint32(0, true);
-        const fileLen = dw.getUint32(4, true);
-        let offset = 8;
-        const trunkCount = fileLen - bodyLen;
-
-        let posArray = [];
-        for (let i = 0; i < trunkCount; i++) {
-            const endPos = dw.getUint32(offset + i * 4, true);
-            posArray.push(endPos);
-        }
-
-        let msgArray = [];
-        offset += (trunkCount * 4);
-        let begin = 0;
-        for (let i = 0; i < posArray.length; i++) {
-            const end = posArray[i];
-            const msg = dat.slice(begin + offset, end + offset);
-            msgArray.push(msg);
-            begin = end;
-        }
-
-        let parsedMsg = [];
-        for (let i = 0; i < msgArray.length; i++) {
-            const msg = msgArray[i];
-            const parsed = this.parse_msg(msg);
-            if (parsed !== undefined) {
-                parsedMsg.push(parsed);
-            }
-        }
-        return parsedMsg;
+    const msgArray = [];
+    offset += trunkCount * 4;
+    let begin = 0;
+    for (let i = 0; i < posArray.length; i++) {
+      const end = posArray[i];
+      const msg = dat.slice(begin + offset, end + offset);
+      msgArray.push(msg);
+      begin = end;
     }
 
-    public static parse_msg(dat: ArrayBuffer): Message | undefined {
-        const dw = new DataView(dat, 0);
-        const timestamp = dw.getUint32(0, true);
-        const filter = dw.getUint8(4);
-        const channel = dw.getUint8(5);
-        const col1 = dw.getUint8(8);
-        if (col1 != 0x1F) return;
-        let col2 = -1;
-        for (let i = 9; i < dat.byteLength; i++) {
-            const element = dw.getUint8(i);
-            if (element == 0x02) {
-                const payloadLen = dw.getInt8(i + 2);
-                i += 2 + payloadLen;
-                continue;
-            }
-            if (element == 0x1F) {
-                col2 = i;
-                break;
-            }
-        }
-        if (col2 < 9) return;
+    const parsedMsg = [];
+    for (let i = 0; i < msgArray.length; i++) {
+      const msg = msgArray[i];
+      const parsed = this.parse_msg(msg);
+      if (parsed !== undefined) {
+        parsedMsg.push(parsed);
+      }
+    }
+    return parsedMsg;
+  }
 
-        let sender = new TokenText([]);
-        if (col2 > 9) {
-            sender = this.parse_token_text(dat.slice(9, col2));
-        }
+  public static parse_msg(dat: ArrayBuffer): Message | undefined {
+    const dw = new DataView(dat, 0);
+    const timestamp = dw.getUint32(0, true);
+    const filter = dw.getUint8(4);
+    const channel = dw.getUint8(5);
+    const col1 = dw.getUint8(8);
+    if (col1 != 0x1f) return;
+    let col2 = -1;
+    for (let i = 9; i < dat.byteLength; i++) {
+      const element = dw.getUint8(i);
+      if (element == 0x02) {
+        const payloadLen = dw.getInt8(i + 2);
+        i += 2 + payloadLen;
+        continue;
+      }
+      if (element == 0x1f) {
+        col2 = i;
+        break;
+      }
+    }
+    if (col2 < 9) return;
 
-        const text = this.parse_token_text(dat.slice(col2 + 1));
-        return new Message(timestamp, filter, channel, sender, text);
+    let sender = new TokenText([]);
+    if (col2 > 9) {
+      sender = this.parse_token_text(dat.slice(9, col2));
     }
 
-    static parse_token_text(dat: ArrayBuffer): TokenText {
-        const dw = new DataView(dat, 0);
-        const decoder = new TextDecoder("utf-8");
+    const text = this.parse_token_text(dat.slice(col2 + 1));
+    return new Message(timestamp, filter, channel, sender, text);
+  }
 
-        let items = [];
-        let beg = 0;
-        for (let i = beg; i < dat.byteLength; i++) {
-            const byte = dw.getUint8(i);
-            if (byte == 2) {
-                // save last
-                items.push(TokenItem.FromText(decoder.decode(dat.slice(beg, i))));
+  static parse_token_text(dat: ArrayBuffer): TokenText {
+    const dw = new DataView(dat, 0);
+    const decoder = new TextDecoder("utf-8");
 
-                const cmd = dw.getUint8(i + 1);
-                const payloadLen = dw.getInt8(i + 2);
-                const payload = dat.slice(i + 3, i + 3 + payloadLen - 1); // exclude terminate 3
-                items.push(TokenItem.FromToken(cmd, payload));
+    const items = [];
+    let beg = 0;
+    for (let i = beg; i < dat.byteLength; i++) {
+      const byte = dw.getUint8(i);
+      if (byte == 2) {
+        // save last
+        items.push(TokenItem.FromText(decoder.decode(dat.slice(beg, i))));
 
-                i += 3 + payloadLen - 1;
-                beg = i + 1;
-            }
-        }
-        if (beg < dat.byteLength) {
-            items.push(TokenItem.FromText(decoder.decode(dat.slice(beg))));
-        }
-        return new TokenText(items);
+        const cmd = dw.getUint8(i + 1);
+        const payloadLen = dw.getInt8(i + 2);
+        const payload = dat.slice(i + 3, i + 3 + payloadLen - 1); // exclude terminate 3
+        items.push(TokenItem.FromToken(cmd, payload));
+
+        i += 3 + payloadLen - 1;
+        beg = i + 1;
+      }
     }
-
+    if (beg < dat.byteLength) {
+      items.push(TokenItem.FromText(decoder.decode(dat.slice(beg))));
+    }
+    return new TokenText(items);
+  }
 }
 
 export function decodeNumber(buffer: ArrayBuffer): number {
-    let dw = new DataView(buffer);
-    let number = 0;
-    const first = dw.getUint8(0)
-    if (first <= 0xCF) return first - 1;
+  const dw = new DataView(buffer);
+  let number = 0;
+  const first = dw.getUint8(0);
+  if (first <= 0xcf) return first - 1;
 
-    let offset = 1;
-    if (first & 0xF0) {
-        let bit = (first & 0x0F) + 1;
-        for (let i = 3; i >= 0; i--) {
-            if (bit & (1 << i)) {
-                number += (dw.getUint8(offset++) << (i * 8));
-            }
-        }
-        return number;
+  let offset = 1;
+  if (first & 0xf0) {
+    const bit = (first & 0x0f) + 1;
+    for (let i = 3; i >= 0; i--) {
+      if (bit & (1 << i)) {
+        number += dw.getUint8(offset++) << (i * 8);
+      }
     }
-    return -1;
+    return number;
+  }
+  return -1;
 }
 
 export function decodeNumberLen(buffer: ArrayBuffer): number {
-    let dw = new DataView(buffer);
-    const first = dw.getUint8(0);
-    if (first <= 0xCF) return 1;
-    if (first & 0xF0) {
-        let bit = (first & 0x0F) + 1;
-        let cnt = 0;
-        for (let i = 0; i < 4; i++) {
-            if (bit & (1 << i)) cnt++;
-        }
-        return cnt + 1;
+  const dw = new DataView(buffer);
+  const first = dw.getUint8(0);
+  if (first <= 0xcf) return 1;
+  if (first & 0xf0) {
+    const bit = (first & 0x0f) + 1;
+    let cnt = 0;
+    for (let i = 0; i < 4; i++) {
+      if (bit & (1 << i)) cnt++;
     }
-    return 1;
+    return cnt + 1;
+  }
+  return 1;
 }
