@@ -15,8 +15,7 @@
     "microtip": "^0.2.2",
     "purecss": "^2.1.0",
     "vue": "^3.2.38",
-    "vue-facing-decorator": "^2.1.12",
-    "vue-router": "^4.1.5"
+    "vue-facing-decorator": "^2.1.12"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
