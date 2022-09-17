@@ -11,7 +11,7 @@
   </div>
   <footer>
     &copy; 2022
-    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="#" target="_blank">源代码</a> | ALL FINAL
+    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="https://github.com/ffxiv-cyou/ffxiv-log-parser/" target="_blank">源代码</a> | ALL FINAL
     FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
   </footer>
 </template>
