@@ -2,11 +2,7 @@
   <header>
     <div class="home-menu pure-menu pure-menu-horizontal">
       <a class="pure-menu-heading">FFXIV 日志解析工具</a>
-      <nav class="pure-menu-list">
-        <div class="pure-menu-item">
-          <a class="pure-menu-link" href="#" target="_blank">帮助</a>
-        </div>
-      </nav>
+      <nav class="pure-menu-list"></nav>
     </div>
   </header>
 
@@ -15,7 +11,7 @@
   </div>
   <footer>
     &copy; 2022
-    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="#" target="_blank">Github</a> | ALL FINAL
+    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="#" target="_blank">源代码</a> | ALL FINAL
     FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
   </footer>
 </template>

@@ -34,12 +34,14 @@ export default class TokenTextComponent extends Vue {
   text-shadow: 0.5px 0.5px 1px var(--color), -0.5px 0.5px 1px var(--color),
     0.5px -0.5px 1px var(--color), -0.5px -0.5px 1px var(--color);
 }
-.link,
 auto-translate {
   user-select: all;
 }
+.link {
+  cursor: pointer;
+}
 .link:hover {
-  background: rgba(128, 128, 128, 0.4);
+  background: rgba(128, 128, 128, 0.5);
 }
 .message icon {
   transform: scale(0.6);

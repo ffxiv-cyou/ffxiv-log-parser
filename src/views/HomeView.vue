@@ -7,21 +7,8 @@
             <div class="pure-u-1-2 pure-u-md-1-3">
               <legend>
                 选择日志文件
-                <span
-                  aria-label="支持ACT日志与游戏日志"
-                  data-microtip-position="right"
-                  role="tooltip"
-                  >(?)</span
-                >
               </legend>
-              <input
-                ref="file"
-                type="file"
-                accept=".log"
-                placeholder="ACT"
-                multiple
-                @change="parse"
-              />
+              <input ref="file" type="file" accept=".log" placeholder="ACT" multiple @change="parse" />
             </div>
             <div class="pure-u-1-2 pure-u-md-1-3">
               <legend>设置</legend>
@@ -41,25 +28,19 @@
     </div>
 
     <div class="message-list">
-      <Message
-        v-for="(item, index) in filterMessages"
-        :key="index"
-        class="message-item"
-        :msg="item"
-        :long-time="longTime"
-      />
+      <Message v-for="(item, index) in filterMessages" :key="index" class="message-item" :msg="item"
+        :long-time="longTime" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Message } from "@/model/message";
+import { Message, TokenText, TokenItem, TokenType } from "@/model/message";
 import { Component, Ref, Vue } from "vue-facing-decorator";
 import { BinLogParser } from "../model/binlog_parser";
 import { ActLogParser } from "../model/actlog_parser";
 import MessageComponent from "@/component/Message.vue";
 import FilterSetting from "@/component/FilterSetting.vue";
-import "microtip/microtip.css";
 
 import("@/model/auto_translate");
 
@@ -75,13 +56,7 @@ export default class Home extends Vue {
   @Ref
   readonly filterPanel!: FilterSetting;
 
-  messages: Message[] = [
-    Message.SimpleText(10, "", "欢迎使用 FFXIV 日志解析工具，请选择日志文件。"),
-    Message.SimpleText(10, "", "当前支持 ACT 日志与游戏日志两种文件"),
-    Message.SimpleText(10, "", "ACT日志存放于: \n(咖啡) [ACT目录]/AppData/Advanced Combat Tracker/FFXIVLogs \n(呆萌) [ACT目录]/FFXIVLogs "),
-    Message.SimpleText(10, "", "游戏日志存放于: [游戏安装目录]/game/My Games/FINAL FANTASY XIV - A Realm Reborn/FFXIV_xxxxxxxxxxxxxxxx/log"),
-    Message.SimpleText(10, "", "请查阅帮助页面了解两种日志的区别与限制"),
-  ];
+  messages: Message[] = [];
   filter = new Map<number, boolean>();
 
   get filterMessages(): Message[] {
@@ -141,6 +116,105 @@ export default class Home extends Vue {
       }
     }
     return false;
+  }
+
+  mounted() {
+    const now = new Date().getTime() / 1000;
+    this.messages = [
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        new TokenItem(TokenType.AutoTranslate, [3, 201], ""),
+      ])),
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        TokenItem.FromText("本工具用于解析日志中的聊天框信息，当前支持"),
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("游戏日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("与"),
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("ACT日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("两种文件。"),
+      ])),
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("游戏日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("的优点是不需要使用第三方插件，且显示效果好；缺点是日志是非实时写出的，且每次登录后都会被从头开始覆盖。"),
+      ])),
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("游戏日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("存放于 "),
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        new TokenItem(TokenType.Link, [0xff], ""),
+        new TokenItem(TokenType.StyleFront, [500], ""),
+        new TokenItem(TokenType.StyleBack, [501], ""),
+        TokenItem.FromText(""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("[游戏安装目录]/game/My Games/FINAL FANTASY XIV - A Realm Reborn/FFXIV_xxxxxxxxxxxxxxxx/log"),
+        new TokenItem(TokenType.Link, [0xce], ""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("目录下"),
+      ])),
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("ACT日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("的优点是日志持久性好，缺点是无法显示特殊效果。"),
+      ])),
+      new Message(now, 57, 0, new TokenText([]), new TokenText([
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        TokenItem.FromText("ACT日志"),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("存放于\n"),
+        TokenItem.FromText("(FFCafe整合版)"),
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        new TokenItem(TokenType.Link, [0xff], ""),
+        new TokenItem(TokenType.StyleFront, [500], ""),
+        new TokenItem(TokenType.StyleBack, [501], ""),
+        TokenItem.FromText(""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("[ACT目录]/AppData/Advanced Combat Tracker/FFXIVLogs"),
+        new TokenItem(TokenType.Link, [0xce], ""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("目录下，或\n"),
+        TokenItem.FromText("(呆萌整合版)"),
+        new TokenItem(TokenType.StyleFront, [549], ""),
+        new TokenItem(TokenType.StyleBack, [550], ""),
+        new TokenItem(TokenType.Link, [0xff], ""),
+        new TokenItem(TokenType.StyleFront, [500], ""),
+        new TokenItem(TokenType.StyleBack, [501], ""),
+        TokenItem.FromText(""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("[ACT目录]/FFXIVLogs"),
+        new TokenItem(TokenType.Link, [0xce], ""),
+        new TokenItem(TokenType.StyleBack, [0], ""),
+        new TokenItem(TokenType.StyleFront, [0], ""),
+        TokenItem.FromText("目录下"),
+      ])),
+      Message.SimpleText(57, "", "你也可以同时选择多个日志文件用于解析。"),
+      Message.SimpleText(57, "", "解析操作运行在本地，你的日志信息不会被上传。")
+    ];
   }
 }
 </script>
