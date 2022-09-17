@@ -1,4 +1,4 @@
-import { decodeNumber, decodeNumberLen } from "./binlog_parser";
+import { decodeNumber, decodeNumberGroup, decodeNumberLen } from "./binlog_parser";
 
 export class Message {
   time: Date;
@@ -44,46 +44,78 @@ export class Message {
 
 export enum TokenType {
   Text,
-  Token,
-  Unknown,
+  Icon, // 0x12
+  Color, // 0x13,
+  Link, // 0x27
+  AutoTranslate, // 0x27
+  StyleFront, // 0x48
+  StyleBack, // 0x49
+  UnknownToken,
 }
 
 export class TokenItem {
   type: TokenType;
-  cmd: number;
-  param: ArrayBuffer;
+  param: number[];
   text: string;
 
-  constructor(type: TokenType, cmd: number, param: ArrayBuffer, text: string) {
+  constructor(type: TokenType, param: number[], text: string) {
     this.type = type;
-    this.cmd = cmd;
     this.param = param;
     this.text = text;
   }
 
   static FromText(text: string): TokenItem {
-    return new TokenItem(TokenType.Text, 0, new ArrayBuffer(0), text);
+    return new TokenItem(TokenType.Text, [], text);
   }
 
   static FromToken(cmd: number, param: ArrayBuffer): TokenItem {
-    return new TokenItem(TokenType.Token, cmd, param, "");
+    switch (cmd) {
+      case 0x12: // 图标
+        const id = decodeNumber(param);
+        return new TokenItem(TokenType.Icon, [id], "");
+      case 0x13: // 设置颜色
+        const rgba = decodeNumber(param);
+        return new TokenItem(TokenType.Color, [rgba], "");
+      case 0x27: // 链接到目标
+        const targetType = decodeNumber(param);
+        const subParam = param.slice(1);
+        switch (targetType) {
+          case 0x00: // 玩家
+            return new TokenItem(TokenType.Link, [targetType], "");
+          case 0x02: // 物品
+            return new TokenItem(TokenType.Link, [targetType, decodeNumber(subParam)], "");
+          case 0x03: // 地图
+            return new TokenItem(TokenType.Link, [targetType, ...decodeNumberGroup(subParam, 3)], "");
+          case 0x05: // 成就
+            return new TokenItem(TokenType.Link, [targetType, decodeNumber(subParam)], "");
+          case 0x07: // 招募板
+            return new TokenItem(TokenType.Link, [targetType], "");
+          case 0x08: // Buff
+            return new TokenItem(TokenType.Link, [targetType, decodeNumber(subParam)], "");
+          case 0x09: // 队员招募
+            return new TokenItem(TokenType.Link, [targetType], "");
+          case 0xce: // 结束
+            return new TokenItem(TokenType.Link, [targetType], "");
+          default:
+            return new TokenItem(TokenType.Link, buf2num(param), "");
+        }
+      case 0x2e: // 定型文
+        return new TokenItem(TokenType.AutoTranslate, decodeNumberGroup(param, 2), "");
+      case 0x48: // 样式1
+        return new TokenItem(TokenType.StyleFront, [decodeNumber(param)], "");
+      case 0x49: // 样式2
+        return new TokenItem(TokenType.StyleBack, [decodeNumber(param)], "");
+      default:
+        return new TokenItem(TokenType.UnknownToken, buf2num(param), "");
+    }
   }
 
   public ToString(): string {
     switch (this.type) {
       case TokenType.Text:
         return this.text;
-      case TokenType.Token:
-        return (
-          "[" +
-          ("00" + this.cmd.toString(16)).slice(-2) +
-          "|" +
-          buf2hex(this.param) +
-          "]"
-        );
-      case TokenType.Unknown:
       default:
-        return "[Unknown]";
+        return "[" + this.type + "|" + this.param.join(" ") + "]";
     }
   }
 
@@ -91,93 +123,65 @@ export class TokenItem {
     switch (this.type) {
       case TokenType.Text:
         return this.text.replace(/\n/g, "<br>");
-      case TokenType.Token:
-        break;
-      case TokenType.Unknown:
-      default:
-        return "[Unknown]";
-    }
-
-    switch (this.cmd) {
-      case 0x12: // 图标
-        const id = decodeNumber(this.param);
-        return '<icon class="fonticon fonticon-' + id + '"></icon>';
-      case 0x13: // 设置颜色
+      case TokenType.Icon:
+        return '<icon class="fonticon fonticon-' + this.param[0] + '"></icon>';
+      case TokenType.Color:
         return "</span></span>"; // 忽略
-      case 0x27: // 链接到目标
-        const targetType = decodeNumber(this.param);
-        switch (targetType) {
+      case TokenType.Link:
+        switch (this.param[0]) {
           case 0x00: // 玩家
             return '<a class="link player">';
           case 0x02: // 物品
-            let itemID = decodeNumber(this.param.slice(1));
+            let itemID = this.param[1];
             if (itemID > 1000000) itemID -= 1000000;
             return '<a class="link item" item-id="' + itemID + '">';
-          case 0x03: {
-            // 地图
-            let offset = 1;
-            const tmID = decodeNumber(this.param.slice(offset));
-            offset += decodeNumberLen(this.param.slice(offset));
-            const xPos = decodeNumber(this.param.slice(offset));
-            offset += decodeNumberLen(this.param.slice(offset));
-            const yPos = decodeNumber(this.param.slice(offset));
-            offset += decodeNumberLen(this.param.slice(offset));
-
+          case 0x03: // 地图
             return (
               '<a class="link map" map-id="' +
-              (tmID & 0xffff) +
+              (this.param[1] & 0xffff) +
               '" x="' +
-              xPos +
+              this.param[2] +
               '" y="' +
-              yPos +
+              this.param[3] +
               '">'
             );
-          }
-          case 0x05: {
-            // 成就
-            const achievementID = decodeNumber(this.param.slice(1));
+          case 0x05: // 成就
             return (
               '<a class="link achievement" achievement-id="' +
-              achievementID +
+              this.param[1] +
               '">'
             );
-          }
+
           case 0x07: // 招募板
             return '<a class="link party-finder">';
           case 0x08: // Buff
-            const buffID = decodeNumber(this.param.slice(1));
-            return '<a class="link buff" buff-id="' + buffID + '">';
+            return '<a class="link buff" buff-id="' + this.param[1] + '">';
           case 0x09: // 队员招募
             return '<a class="link party-f">';
           case 0xce: // 结束
             return "</a>";
           default:
             return (
-              '<a class="link unknown" detail="' + buf2hex(this.param) + '">'
+              '<a class="link unknown" detail="' + this.param.join(" ") + '">'
             );
         }
-      case 0x2e: // 定型文
-        const group = decodeNumber(this.param) + 1;
-        const compID = decodeNumber(
-          this.param.slice(decodeNumberLen(this.param))
-        );
+      case TokenType.AutoTranslate:
         return (
-          '<icon class="gui gui-54"></icon><auto-translate group="' +
-          group +
+          '<icon class="fonticon fonticon-54"></icon><auto-translate group="' +
+          (this.param[0] - 1) +
           '" cid="' +
-          compID +
-          '"></auto-translate><icon class="gui gui-55"></icon>'
+          this.param[1] +
+          '"></auto-translate><icon class="fonticon fonticon-55"></icon>'
         );
-      case 0x48: // 样式1
-        const colorMap1 = decodeNumber(this.param);
-        if (colorMap1 === 0) return "</span>";
-        return '<span class="color1 plate-' + colorMap1 + '">';
-      case 0x49: // 样式2
-        const colorMap2 = decodeNumber(this.param);
-        if (colorMap2 === 0) return "</span>";
-        return '<span class="color2 plate-' + colorMap2 + '">';
+      case TokenType.StyleFront:
+        if (this.param[0] === 0) return "</span>";
+        return '<span class="color1 plate-' + this.param[0] + '">';
+      case TokenType.StyleBack:
+        if (this.param[0] === 0) return "</span>";
+        return '<span class="color2 plate-' + this.param[0] + '">';
+      case TokenType.UnknownToken:
       default:
-        return this.ToString();
+        return "[Unknown]";
     }
   }
 }
@@ -203,4 +207,8 @@ export function buf2hex(buffer: ArrayBuffer) {
   return [...new Uint8Array(buffer)]
     .map((x) => ("00" + x.toString(16)).slice(-2))
     .join(" ");
+}
+
+function buf2num(buffer: ArrayBuffer) {
+  return [...new Uint8Array(buffer)]
 }

@@ -122,6 +122,34 @@ export function decodeNumber(buffer: ArrayBuffer): number {
   return -1;
 }
 
+export function decodeNumberGroup(buffer: ArrayBuffer, len: number): number[] {
+  const dw = new DataView(buffer);
+  let result = [];
+  let offset = 0;
+  for (let i = 0; i < len; i++) {
+    const first = dw.getUint8(offset++);
+    if (first <= 0xcf) {
+      result.push(first - 1);
+      continue;
+    }
+
+    if (first & 0xf0) {
+      let number = 0;
+      const bit = (first & 0x0f) + 1;
+      for (let i = 3; i >= 0; i--) {
+        if (bit & (1 << i)) {
+          number += dw.getUint8(offset++) << (i * 8);
+        }
+      }
+      result.push(number);
+    } else {
+      result.push(- 1);
+    }
+  }
+
+  return result;
+}
+
 export function decodeNumberLen(buffer: ArrayBuffer): number {
   const dw = new DataView(buffer);
   const first = dw.getUint8(0);
