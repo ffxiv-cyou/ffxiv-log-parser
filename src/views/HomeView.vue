@@ -4,11 +4,11 @@
       <form class="pure-form">
         <fieldset>
           <div class="pure-g">
-            <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-u-1-2 pure-u-md-1-3">
               <legend>
                 选择日志文件
                 <span
-                  aria-label="支持ACT日志与游戏日志，详情请看帮助。"
+                  aria-label="支持ACT日志与游戏日志"
                   data-microtip-position="right"
                   role="tooltip"
                   >(?)</span
@@ -23,7 +23,7 @@
                 @change="parse"
               />
             </div>
-            <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-u-1-2 pure-u-md-1-3">
               <legend>设置</legend>
               <label for="show-long-time">
                 <input id="show-long-time" v-model="longTime" type="checkbox" />
@@ -78,6 +78,8 @@ export default class Home extends Vue {
   messages: Message[] = [
     Message.SimpleText(57, "", "欢迎使用 FFXIV 日志解析工具"),
     Message.SimpleText(57, "", "请选择日志文件"),
+    Message.SimpleText(57, "", "当前支持ACT与游戏两种日志文件"),
+    Message.SimpleText(57, "", "请查阅帮助页面了解两种日志的区别与限制"),
   ];
   filter = new Map<number, boolean>();
 

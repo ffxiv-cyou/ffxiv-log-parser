@@ -3,7 +3,9 @@
     <div class="home-menu pure-menu pure-menu-horizontal">
       <a class="pure-menu-heading">FFXIV 日志解析工具</a>
       <nav class="pure-menu-list">
-        <a class="pure-menu-item" href="#" target="_blank">帮助</a>
+        <div class="pure-menu-item">
+          <a class="pure-menu-link" href="#" target="_blank">帮助</a>
+        </div>
       </nav>
     </div>
   </header>
@@ -13,7 +15,7 @@
   </div>
   <footer>
     &copy; 2022
-    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | ALL FINAL
+    <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="#" target="_blank">Github</a> | ALL FINAL
     FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
   </footer>
 </template>
@@ -47,6 +49,12 @@ export default class App extends Vue {}
   color: white;
 }
 
+.home-menu .pure-menu-list a:hover, 
+.home-menu .pure-menu-list a:focus {
+  background: none;
+  border: none;
+  color: #AECFE5;
+}
 header {
   height: 60px;
 }
@@ -55,14 +63,13 @@ header {
   margin: auto;
   padding: 0 1em;
   max-width: 1440px;
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 60px - 30px);
 }
 
 footer {
   font-size: 14px;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 10px;
+  line-height: 20px;
+  padding: 5px 0 5px 10px;
   background: #2d3e50;
   color: white;
 }

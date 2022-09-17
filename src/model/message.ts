@@ -90,7 +90,7 @@ export class TokenItem {
   public ToHtmlString(): string {
     switch (this.type) {
       case TokenType.Text:
-        return this.text;
+        return this.text.replace(/\n/g, "<br>");
       case TokenType.Token:
         break;
       case TokenType.Unknown:
@@ -103,7 +103,7 @@ export class TokenItem {
         const id = decodeNumber(this.param);
         return '<icon class="gui gui-' + id + '"></icon>';
       case 0x13: // 设置颜色
-        return ""; // 忽略
+        return "</span></span>"; // 忽略
       case 0x27: // 链接到目标
         const targetType = decodeNumber(this.param);
         switch (targetType) {
@@ -162,11 +162,11 @@ export class TokenItem {
           this.param.slice(decodeNumberLen(this.param))
         );
         return (
-          '<icon type="auto-trans-left" /><auto-translate group="' +
+          '<icon class="gui gui-54"></icon><auto-translate group="' +
           group +
           '" cid="' +
           compID +
-          '"></auto-translate><icon type="auto-trans-right" />'
+          '"></auto-translate><icon class="gui gui-55"></icon>'
         );
       case 0x48: // 样式1
         const colorMap1 = decodeNumber(this.param);

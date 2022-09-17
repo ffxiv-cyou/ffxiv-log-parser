@@ -83,7 +83,9 @@ export class BinLogParser {
       const byte = dw.getUint8(i);
       if (byte == 2) {
         // save last
-        items.push(TokenItem.FromText(decoder.decode(dat.slice(beg, i))));
+        if (i > beg) {
+          items.push(TokenItem.FromText(decoder.decode(dat.slice(beg, i))));
+        }
 
         const cmd = dw.getUint8(i + 1);
         const payloadLen = dw.getInt8(i + 2);

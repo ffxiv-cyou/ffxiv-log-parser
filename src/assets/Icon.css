@@ -1,11 +1,18 @@
 icon.gui {
-    background: center/24px no-repeat;
+    background: center/auto 24px no-repeat;
     width: 24px;
     display: inline-block;
-    height: 21px;
+    height: 20px;
     vertical-align: bottom;
 }
-
+icon.gui-54 {
+    background-image: url("./icons/Xbcontroller_54.png");
+    width: 14px;
+}
+icon.gui-55 {
+    background-image: url("./icons/Xbcontroller_55.png");
+    width: 14px;
+}
 icon.gui-77 {
     background-image: url("./icons/061523.png");
 }
