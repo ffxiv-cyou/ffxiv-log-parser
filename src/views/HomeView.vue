@@ -76,10 +76,11 @@ export default class Home extends Vue {
   readonly filterPanel!: FilterSetting;
 
   messages: Message[] = [
-    Message.SimpleText(57, "", "欢迎使用 FFXIV 日志解析工具"),
-    Message.SimpleText(57, "", "请选择日志文件"),
-    Message.SimpleText(57, "", "当前支持ACT与游戏两种日志文件"),
-    Message.SimpleText(57, "", "请查阅帮助页面了解两种日志的区别与限制"),
+    Message.SimpleText(10, "", "欢迎使用 FFXIV 日志解析工具，请选择日志文件。"),
+    Message.SimpleText(10, "", "当前支持 ACT 日志与游戏日志两种文件"),
+    Message.SimpleText(10, "", "ACT日志存放于: \n(咖啡) [ACT目录]/AppData/Advanced Combat Tracker/FFXIVLogs \n(呆萌) [ACT目录]/FFXIVLogs "),
+    Message.SimpleText(10, "", "游戏日志存放于: [游戏安装目录]/game/My Games/FINAL FANTASY XIV - A Realm Reborn/FFXIV_xxxxxxxxxxxxxxxx/log"),
+    Message.SimpleText(10, "", "请查阅帮助页面了解两种日志的区别与限制"),
   ];
   filter = new Map<number, boolean>();
 
