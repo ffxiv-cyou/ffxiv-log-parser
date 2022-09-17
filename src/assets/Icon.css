@@ -1,43 +1,300 @@
-icon.gui {
-    background: center/auto 24px no-repeat;
-    width: 24px;
+icon.fonticon {
+    --width: 40px;
+    width: var(--width);
+    height: 40px;
     display: inline-block;
-    height: 20px;
     vertical-align: bottom;
-}
-icon.gui-54 {
-    background-image: url("./icons/Xbcontroller_54.png");
-    width: 14px;
-}
-icon.gui-55 {
-    background-image: url("./icons/Xbcontroller_55.png");
-    width: 14px;
-}
-icon.gui-77 {
-    background-image: url("./icons/061523.png");
-}
-icon.gui-78 {
-    background-image: url("./icons/061540.png");
-}
-icon.gui-79 {
-    background-image: url("./icons/061542.png");
-}
-icon.gui-80 {
-    background-image: url("./icons/061543.png");
-}
-icon.gui-81 {
-    background-image: url("./icons/061544.png");
-}
-icon.gui-95 {
-    background-image: url("./icons/061547.png");
+    background-image: url("./fonticon_xinput.png");
 }
 
-/* dirty hack */
-icon.gui-88 {
-    display: inline;
+icon.fonticon-1 {
+    background-position: -0px -340px;
 }
-icon.gui-88::after {
-    content: "\e05d";
-    color: white;
-    text-shadow: 1px 1px 3px blue;
+icon.fonticon-2 {
+    background-position: -40px -340px;
 }
+icon.fonticon-3 {
+    background-position: -80px -340px;
+}
+icon.fonticon-4 {
+    background-position: -120px -340px;
+}
+icon.fonticon-5 {
+    background-position: -160px -340px;
+}
+icon.fonticon-6 {
+    background-position: -0px -380px;
+}
+icon.fonticon-7 {
+    background-position: -40px -380px;
+}
+icon.fonticon-8 {
+    background-position: -80px -380px;
+}
+icon.fonticon-9 {
+    background-position: -120px -380px;
+}
+icon.fonticon-10 {
+    background-position: -160px -380px;
+}
+icon.fonticon-11 {
+    background-position: -0px -420px;
+}
+icon.fonticon-12 {
+    background-position: -40px -420px;
+}
+icon.fonticon-13 {
+    background-position: -80px -420px;
+}
+icon.fonticon-14 {
+    background-position: -120px -420px;
+}
+icon.fonticon-15 {
+    background-position: -160px -420px;
+}
+icon.fonticon-16 {
+    background-position: -0px -460px;
+    --width: 108px;
+}
+icon.fonticon-17 {
+    background-position: -108px -460px;
+    --width: 108px;
+}
+icon.fonticon-18 {
+    background-position: -0px -500px;
+    --width: 60px;
+}
+icon.fonticon-19 {
+    background-position: -60px -500px;
+    --width: 60px;
+}
+icon.fonticon-20 {
+    background-position: -120px -500px;
+}
+icon.fonticon-21 {
+    background-position: -160px -500px;
+}
+icon.fonticon-22 {
+    background-position: -0px -540px;
+    --width: 60px;
+}
+icon.fonticon-23 {
+    background-position: -60px -540px;
+    --width: 60px;
+}
+icon.fonticon-24 {
+    background-position: -120px -540px;
+}
+icon.fonticon-25 {
+    background-position: -160px -540px;
+}
+
+icon.fonticon-51 {
+    background-position: -248px -340px;
+}
+icon.fonticon-52 {
+    background-position: -288px -340px;
+}
+icon.fonticon-53 {
+    background-position: -328px -340px;
+}
+icon.fonticon-54 {
+    background-position: -200px -340px;
+    --width: 24px;
+}
+icon.fonticon-55 {
+    background-position: -224px -340px;
+    --width: 24px;
+}
+icon.fonticon-56 {
+    background-position: -200px -380px;
+}
+icon.fonticon-57 {
+    background-position: -240px -380px;
+}
+icon.fonticon-58 {
+    background-position: -280px -380px;
+}
+icon.fonticon-59 {
+    background-position: -200px -420px;
+}
+icon.fonticon-60 {
+    background-position: -240px -420px;
+}
+icon.fonticon-61 {
+    background-position: -280px -420px;
+}
+icon.fonticon-62 {
+    background-position: -320px -380px;
+}
+icon.fonticon-63 {
+    background-position: -320px -420px;
+}
+icon.fonticon-64 {
+    background-position: -368px -340px;
+}
+icon.fonticon-65 {
+    background-position: -408px -340px;
+}
+icon.fonticon-66 {
+    background-position: -448px -340px;
+}
+icon.fonticon-67 {
+    background-position: -360px -380px;
+}
+icon.fonticon-68 {
+    background-position: -400px -380px;
+}
+icon.fonticon-69 {
+    background-position: -360px -420px;
+    --width: 20px;
+}
+icon.fonticon-70 {
+    background-position: -380px -420px;
+    --width: 20px;
+}
+icon.fonticon-71 {
+    background-position: -400px -420px;
+}
+icon.fonticon-72 {
+    background-position: -440px -420px;
+}
+icon.fonticon-73 {
+    background-position: -440px -380px;
+}
+icon.fonticon-74 {
+    background-position: -216px -460px;
+}
+icon.fonticon-75 {
+    background-position: -256px -460px;
+}
+icon.fonticon-76 {
+    background-position: -296px -460px;
+}
+icon.fonticon-77 {
+    background-position: -336px -460px;
+}
+icon.fonticon-78 {
+    background-position: -376px -460px;
+}
+icon.fonticon-79 {
+    background-position: -416px -460px;
+}
+icon.fonticon-80 {
+    background-position: -456px -460px;
+}
+icon.fonticon-81 {
+    background-position: -200px -500px;
+}
+icon.fonticon-82 {
+    background-position: -240px -500px;
+}
+icon.fonticon-83 {
+    background-position: -280px -500px;
+}
+icon.fonticon-84 {
+    background-position: -320px -500px;
+}
+icon.fonticon-85 {
+    background-position: -360px -500px;
+}
+icon.fonticon-86 {
+    background-position: -400px -500px;
+}
+icon.fonticon-87 {
+    background-position: -440px -500px;
+}
+icon.fonticon-88 {
+    background-position: -200px -540px;
+}
+icon.fonticon-89 {
+    background-position: -240px -540px;
+}
+icon.fonticon-90 {
+    background-position: -280px -540px;
+}
+icon.fonticon-91 {
+    background-position: -320px -540px;
+}
+icon.fonticon-92 {
+    background-position: -360px -540px;
+}
+icon.fonticon-93 {
+    background-position: -400px -540px;
+}
+icon.fonticon-94 {
+    background-position: -440px -540px;
+}
+icon.fonticon-95 {
+    background-position: -0px -580px;
+}
+icon.fonticon-96 {
+    background-position: -40px -580px;
+}
+icon.fonticon-97 {
+    background-position: -80px -580px;
+}
+icon.fonticon-98 {
+    background-position: -120px -580px;
+}
+icon.fonticon-99 {
+    background-position: -160px -580px;
+}
+icon.fonticon-100 {
+    background-position: -200px -580px;
+}
+icon.fonticon-101 {
+    background-position: -240px -580px;
+}
+icon.fonticon-102 {
+    background-position: -280px -580px;
+}
+icon.fonticon-103 {
+    background-position: -320px -580px;
+}
+icon.fonticon-104 {
+    background-position: -360px -580px;
+}
+icon.fonticon-105 {
+    background-position: -400px -580px;
+}
+icon.fonticon-106 {
+    background-position: -440px -580px;
+}
+icon.fonticon-107 {
+    background-position: -0px -620px;
+}
+icon.fonticon-108 {
+    background-position: -40px -620px;
+}
+icon.fonticon-109 {
+    background-position: -80px -620px;
+}
+icon.fonticon-110 {
+    background-position: -120px -620px;
+}
+icon.fonticon-111 {
+    background-position: -160px -620px;
+}
+icon.fonticon-112 {
+    background-position: -200px -620px;
+}
+icon.fonticon-113 {
+    background-position: -240px -620px;
+}
+icon.fonticon-114 {
+    background-position: -280px -620px;
+}
+icon.fonticon-115 {
+    background-position: -320px -620px;
+}
+icon.fonticon-116 {
+    background-position: -360px -620px;
+}
+icon.fonticon-117 {
+    background-position: -400px -620px;
+}
+icon.fonticon-118 {
+    background-position: -440px -620px;
+}
+

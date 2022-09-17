@@ -41,4 +41,8 @@ auto-translate {
 .link:hover {
   background: rgba(128, 128, 128, 0.4);
 }
+.message icon {
+  transform: scale(0.6);
+  margin: calc(-0.25 * 40px) calc(-0.25 * var(--width))
+}
 </style>

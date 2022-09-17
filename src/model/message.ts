@@ -101,7 +101,7 @@ export class TokenItem {
     switch (this.cmd) {
       case 0x12: // 图标
         const id = decodeNumber(this.param);
-        return '<icon class="gui gui-' + id + '"></icon>';
+        return '<icon class="fonticon fonticon-' + id + '"></icon>';
       case 0x13: // 设置颜色
         return "</span></span>"; // 忽略
       case 0x27: // 链接到目标
