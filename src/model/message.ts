@@ -175,10 +175,10 @@ export class TokenItem {
         );
       case TokenType.StyleFront:
         if (this.param[0] === 0) return "</span>";
-        return '<span class="color1 plate-' + this.param[0] + '">';
+        return '<span class="color1 palette-' + this.param[0] + '">';
       case TokenType.StyleBack:
         if (this.param[0] === 0) return "</span>";
-        return '<span class="color2 plate-' + this.param[0] + '">';
+        return '<span class="color2 palette-' + this.param[0] + '">';
       case TokenType.UnknownToken:
       default:
         return "[Unknown]";
