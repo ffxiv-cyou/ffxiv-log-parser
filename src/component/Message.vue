@@ -80,7 +80,7 @@ export default class MessageComponent extends Vue {
   --shadow: rgba(0, 0, 0, 1);
   text-shadow: 0.5px 0.5px 1px var(--shadow), -0.5px 0.5px 1px var(--shadow),
     0.5px -0.5px 1px var(--shadow), -0.5px -0.5px 1px var(--shadow);
-  filter: blur(0.45px) brightness(0.98);
+  filter: blur(0.3px) brightness(0.99);
 }
 
 .message .text-body {

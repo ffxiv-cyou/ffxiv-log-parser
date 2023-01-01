@@ -10,7 +10,7 @@
     <HomePage />
   </div>
   <footer>
-    &copy; 2022
+    &copy; 2022-{{year}}
     <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> | <a href="https://github.com/ffxiv-cyou/ffxiv-log-parser/" target="_blank">源代码</a> | ALL FINAL
     FANTASY XIV CONTENT IS PROPERTY OF SQUARE ENIX CO., LTD
   </footer>
@@ -24,7 +24,11 @@ import HomePage from "@/views/HomeView.vue";
     HomePage: HomePage,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  get year() {
+    return new Date().getFullYear();
+  }
+}
 </script>
 
 <style scoped>

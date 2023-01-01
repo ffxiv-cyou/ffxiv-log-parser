@@ -13,7 +13,8 @@
   "dependencies": {
     "purecss": "^2.1.0",
     "vue": "^3.2.38",
-    "vue-facing-decorator": "^2.1.12"
+    "vue-facing-decorator": "^2.1.12",
+    "vue-gtag": "^2.0.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
