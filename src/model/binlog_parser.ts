@@ -108,6 +108,7 @@ export function decodeNumber(buffer: ArrayBuffer): number {
   let number = 0;
   const first = dw.getUint8(0);
   if (first <= 0xcf) return first - 1;
+  if (first < 0xf0) return 0xf0 - first;
 
   let offset = 1;
   if (first & 0xf0) {
