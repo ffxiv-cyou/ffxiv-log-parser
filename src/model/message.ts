@@ -122,7 +122,7 @@ export class TokenItem {
   public ToHtmlString(): string {
     switch (this.type) {
       case TokenType.Text:
-        return this.text.replace(/\n/g, "<br>");
+        return this.text.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
       case TokenType.Icon:
         return '<icon class="fonticon fonticon-' + this.param[0] + '"></icon>';
       case TokenType.Color:
