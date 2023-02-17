@@ -220,7 +220,7 @@ export default class App extends Vue {
 
 <style>
 body {
-  background: url("https://static.web.sdo.com/jijiamobile/pic/ff14/20211217patch6/media/scCg_9dJvPwFHLqfB6KBgwhh9o.jpg") 50% 50%/cover;
+  background: url("https://static.web.sdo.com/jijiamobile/pic/ff14/20211217patch6/media/scCg_9dJvPwFHLqfB6KBgwhh9o.jpg") fixed 50% 50%/cover;
 }
 .home-menu {
   background: #18181a;
