@@ -2,6 +2,9 @@ import { TokenText, Message, TokenItem } from "./message";
 
 export class BinLogParser {
   public static validate(dat: ArrayBuffer): boolean {
+    if (dat.byteLength < 8) {
+      return false;
+    }
     const dw = new DataView(dat, 0);
     const bodyLen = dw.getUint32(0, true);
     const fileLen = dw.getUint32(4, true);
