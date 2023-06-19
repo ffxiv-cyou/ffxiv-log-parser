@@ -95,9 +95,9 @@ export default class App extends Vue {
         const file = files[i];
         const buffer = await this.loadFile(file);
         if (BinLogParser.validate(buffer))
-          this.messages.push(...BinLogParser.parse(buffer));
+          this.messages = this.messages.concat(BinLogParser.parse(buffer));
         else if (ActLogParser.validate(buffer)) {
-          this.messages.push(...ActLogParser.parse(buffer));
+          this.messages = this.messages.concat(ActLogParser.parse(buffer));
         } else {
           this.messages.push(
             Message.Text(
