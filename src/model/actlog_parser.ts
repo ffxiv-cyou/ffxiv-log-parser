@@ -5,7 +5,7 @@ export class ActLogParser {
     const dw = new DataView(dat, 0);
     const ch1 = dw.getUint8(0);
     const ch2 = dw.getUint8(1);
-    return ch1 >= 0x30 && ch1 <= 0x39 && ch2 >= 0x30 && ch2 <= 0x39;
+    return (ch1 == 0x0d && ch2 == 0x0a) || (ch1 >= 0x30 && ch1 <= 0x39 && ch2 >= 0x30 && ch2 <= 0x39);
   }
 
   public static parse(data: ArrayBuffer): Message[] {
