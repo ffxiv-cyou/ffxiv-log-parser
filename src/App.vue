@@ -56,7 +56,7 @@ export default class App extends Vue {
   filter = new Map<number, boolean>();
 
   get filterMessages(): Message[] {
-    return this.messages.filter((x) => this.filter.get(x.filter) === true);
+    return this.messages.filter((x) => this.filter.get(x.filter & 0x7F) === true);
   }
 
   longTime = false;
