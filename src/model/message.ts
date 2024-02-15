@@ -15,7 +15,7 @@ export class Message {
     text: TokenText
   ) {
     this.time = new Date(timestamp * 1000);
-    this.filter = filter;
+    this.filter = filter & 0x7F;
     this.channel = channel;
     this.sender = sender;
     this.text = text;
