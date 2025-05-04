@@ -220,7 +220,7 @@ export default class App extends Vue {
 
 <style>
 body {
-  background: url("https://static.web.sdo.com/jijiamobile/pic/ff14/20211217patch6/media/scCg_9dJvPwFHLqfB6KBgwhh9o.jpg") fixed 50% 50%/cover;
+  background: url("https://static.web.sdo.com/jijiamobile/pic/ff14/20240927dawntrail/patch70/images/GanCtqM08pr--cxI4qfpOkqLGg.jpg") fixed 50% 50%/cover;
 }
 .home-menu {
   background: #18181a;
@@ -255,7 +255,7 @@ header,
 .container {
   margin: auto;
   min-height: calc(100vh - 60px - 50px);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 10px 20px;
 }
 

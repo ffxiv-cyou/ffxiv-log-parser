@@ -368,6 +368,26 @@
     --glow-color: rgba(220, 103, 100, 1.000000);
     --unk3-color: rgba(220, 103, 100, 1.000000);
 }
+.palette-74 {
+    --color: rgba(252, 220, 151, 1.000000);
+    --glow-color: rgba(252, 220, 151, 1.000000);
+    --unk3-color: rgba(252, 220, 151, 1.000000);
+}
+.palette-75 {
+    --color: rgba(76, 52, 47, 1.000000);
+    --glow-color: rgba(76, 52, 47, 1.000000);
+    --unk3-color: rgba(76, 52, 47, 1.000000);
+}
+.palette-76 {
+    --color: rgba(230, 167, 58, 1.000000);
+    --glow-color: rgba(232, 104, 12, 1.000000);
+    --unk3-color: rgba(230, 167, 58, 1.000000);
+}
+.palette-77 {
+    --color: rgba(97, 65, 51, 1.000000);
+    --glow-color: rgba(207, 170, 155, 1.000000);
+    --unk3-color: rgba(153, 77, 44, 1.000000);
+}
 .palette-500 {
     --color: rgba(255, 123, 26, 1.000000);
     --glow-color: rgba(204, 86, 0, 1.000000);
