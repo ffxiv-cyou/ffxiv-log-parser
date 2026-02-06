@@ -1,4 +1,4 @@
-import { decodeNumber, decodeNumberGroup, decodeNumberLen } from "./binlog_parser";
+import { decodeNumber, decodeNumberGroup } from "./binlog_parser";
 
 export class Message {
   time: Date;

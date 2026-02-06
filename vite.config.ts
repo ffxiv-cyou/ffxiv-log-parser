@@ -1,14 +1,19 @@
-import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [svelte()],
+  build: {
+    rolldownOptions: {
+      input: {
+        main: 'index.html',
+      }
+    }
+  },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+      '@': '/src'
+    }
   },
-});
+})
