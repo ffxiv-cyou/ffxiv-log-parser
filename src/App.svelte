@@ -1,15 +1,35 @@
 <script lang="ts">
-  import { Message, TokenText, TokenItem, TokenType } from "@/model/message";
+  import { Message } from "@/model/message";
   import { BinLogParser } from "@/model/binlog_parser";
   import { ActLogParser } from "@/model/actlog_parser";
   import MessageComponent from "@/component/Message.svelte";
   import FilterSetting from "@/component/FilterSetting.svelte";
+  import defaultMessagesBinlog from "@/assets/default_messages.binlog.b64?raw";
   import("@/model/auto_translate");
 
   let file!: HTMLInputElement;
   let filterPanel!: FilterSetting;
 
-  let messages: Message[] = $state([]);
+  const defaultBinlogBase64 = defaultMessagesBinlog.trim();
+  function base64ToArrayBuffer(base64: string): ArrayBuffer {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
+  function loadDefaultMessages(): Message[] {
+    const buffer = base64ToArrayBuffer(defaultBinlogBase64);
+    const parsed = BinLogParser.parse(buffer);
+    const now = new Date().getTime() / 1000;
+    return parsed.map(
+      (msg) => new Message(now, msg.filter, msg.channel, msg.sender, msg.text),
+    );
+  }
+
+  let messages: Message[] = $state(loadDefaultMessages());
   let filter = new Map<number, boolean>();
 
   let filterMessages = $derived(
@@ -69,143 +89,6 @@
     }
     return false;
   }
-
-  const now = new Date().getTime() / 1000;
-  messages = [
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([new TokenItem(TokenType.AutoTranslate, [3, 201], "")]),
-    ),
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([
-        TokenItem.FromText("本工具用于解析日志中的聊天框信息，当前支持"),
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("游戏日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("与"),
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("ACT日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("两种文件。"),
-      ]),
-    ),
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("游戏日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText(
-          "的优点是不需要使用第三方插件，且显示效果好；缺点是日志是非实时写出的，且每次登录后都会被从头开始覆盖。",
-        ),
-      ]),
-    ),
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("游戏日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("存放于 "),
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        new TokenItem(TokenType.Link, [0xff], ""),
-        new TokenItem(TokenType.StyleFront, [500], ""),
-        new TokenItem(TokenType.StyleBack, [501], ""),
-        TokenItem.FromText(""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText(
-          "[游戏安装目录]/game/My Games/FINAL FANTASY XIV - A Realm Reborn/FFXIV_xxxxxxxxxxxxxxxx/log",
-        ),
-        new TokenItem(TokenType.Link, [0xce], ""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("目录下"),
-      ]),
-    ),
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("ACT日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("的优点是日志持久性好，缺点是无法显示特殊效果。"),
-      ]),
-    ),
-    new Message(
-      now,
-      57,
-      0,
-      new TokenText([]),
-      new TokenText([
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        TokenItem.FromText("ACT日志"),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("存放于\n"),
-        TokenItem.FromText("(FFCafe整合版)"),
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        new TokenItem(TokenType.Link, [0xff], ""),
-        new TokenItem(TokenType.StyleFront, [500], ""),
-        new TokenItem(TokenType.StyleBack, [501], ""),
-        TokenItem.FromText(""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText(
-          "[ACT目录]/AppData/Advanced Combat Tracker/FFXIVLogs",
-        ),
-        new TokenItem(TokenType.Link, [0xce], ""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("目录下，或\n"),
-        TokenItem.FromText("(呆萌整合版)"),
-        new TokenItem(TokenType.StyleFront, [549], ""),
-        new TokenItem(TokenType.StyleBack, [550], ""),
-        new TokenItem(TokenType.Link, [0xff], ""),
-        new TokenItem(TokenType.StyleFront, [500], ""),
-        new TokenItem(TokenType.StyleBack, [501], ""),
-        TokenItem.FromText(""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("[ACT目录]/FFXIVLogs"),
-        new TokenItem(TokenType.Link, [0xce], ""),
-        new TokenItem(TokenType.StyleBack, [0], ""),
-        new TokenItem(TokenType.StyleFront, [0], ""),
-        TokenItem.FromText("目录下"),
-      ]),
-    ),
-    Message.SimpleText(57, "", "你也可以同时选择多个日志文件用于解析。"),
-    Message.SimpleText(57, "", "解析操作运行在本地，你的日志信息不会被上传。"),
-  ];
 
   let year = new Date().getFullYear();
 </script>
