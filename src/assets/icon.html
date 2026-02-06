@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <title>图标预览</title>
+  <link rel="stylesheet" href="./Icon.css">
+  <style>
+    body {
+      background: #222;
+      color: #ccc;
+      padding: 20px;
+    }
+
+    body[color=light] {
+      background: #fefefe;
+      color: #222;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .icon-card {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-card icon {
+      display: block;
+    }
+
+    .icon-card code {
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="document.body.setAttribute('color', document.body.getAttribute('color') === 'light' ? '' : 'light')">切换亮色/暗色</button>
+  <section class="icon-grid" id="iconGrid"></section>
+  <script>
+    const ICON_RANGES = [
+      [1, 25],
+      [51, 118],
+      [128, 199]
+    ];
+    const iconGrid = document.getElementById("iconGrid");
+
+    // Build the list of available icon class names up front for quick filtering.
+    const iconClasses = ICON_RANGES.flatMap(([start, end]) => {
+      const classes = [];
+      for (let i = start; i <= end; i++) {
+        classes.push(`fonticon-${i}`);
+      }
+      return classes;
+    });
+
+    const renderIcons = () => {
+      iconGrid.innerHTML = "";
+
+      iconClasses.forEach((className) => {
+        const card = document.createElement("div");
+        card.className = "icon-card";
+
+        const glyph = document.createElement("icon");
+        glyph.className = `fonticon ${className}`;
+        card.appendChild(glyph);
+
+        const codeLabel = document.createElement("code");
+        codeLabel.textContent = className;
+        card.appendChild(codeLabel);
+
+        iconGrid.appendChild(card);
+      });
+    };
+
+    renderIcons();
+  </script>
+</body>
+
+</html>
