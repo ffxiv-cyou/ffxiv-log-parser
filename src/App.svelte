@@ -5,6 +5,7 @@
   import MessageComponent from "@/component/Message.svelte";
   import FilterSetting from "@/component/FilterSetting.svelte";
   import defaultMessagesBinlog from "@/assets/default_messages.binlog.b64?raw";
+  import { SvelteMap } from "svelte/reactivity";
   import("@/model/auto_translate");
 
   let file!: HTMLInputElement;
@@ -30,7 +31,7 @@
   }
 
   let messages: Message[] = $state(loadDefaultMessages());
-  let filter = new Map<number, boolean>();
+  let filter = $state(new SvelteMap<number, boolean>());
 
   let filterMessages = $derived(
     messages.filter((x) => filter.get(x.filter) === true),
