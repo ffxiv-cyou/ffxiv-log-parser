@@ -38,6 +38,7 @@
   );
 
   let longTime = $state(false);
+  let eorzeaTime = $state(false);
 
   function loadFile(file: File): Promise<ArrayBuffer> {
     return new Promise<ArrayBuffer>((resolve, reject) => {
@@ -96,13 +97,18 @@
 
 <svelte:head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEMN364SMZ"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-MEMN364SMZ"
+  ></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    gtag('config', 'G-MEMN364SMZ');
+    gtag("config", "G-MEMN364SMZ");
   </script>
 </svelte:head>
 
@@ -124,6 +130,10 @@
         <input id="show-long-time" bind:checked={longTime} type="checkbox" />
         显示日期
       </label>
+      <label for="show-eorzea-time">
+        <input id="show-eorzea-time" bind:checked={eorzeaTime} type="checkbox" />
+        显示艾欧泽亚时间
+      </label>
       <button onclick={toggleFilter}>过滤设置</button>
     </div>
   </div>
@@ -133,12 +143,12 @@
   <FilterSetting bind:this={filterPanel} {filter} />
   <div class="message-list">
     {#each filterMessages as item}
-      <MessageComponent msg={item} {longTime} />
+      <MessageComponent msg={item} {longTime} {eorzeaTime} />
     {/each}
   </div>
 </div>
 <footer>
-  &copy; 2022-{ year }
+  &copy; 2022-{year}
   <a href="https://ffxiv.cyou" target="_blank">狒狒西柚</a> |
   <a href="https://github.com/ffxiv-cyou/ffxiv-log-parser/" target="_blank"
     >源代码</a

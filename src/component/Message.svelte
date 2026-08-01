@@ -10,18 +10,43 @@
   let {
     msg,
     longTime,
+    eorzeaTime,
   }: {
     msg: Message;
     longTime: boolean;
+    eorzeaTime: boolean;
   } = $props();
 
   let time = $derived(
     longTime ? msg.time.toLocaleString() : msg.time.toLocaleTimeString(),
   );
+
+  function fixedWidth(n: number): string {
+    if (n < 10) return "0" + n.toString();
+    return n.toString();
+  }
+
+  export function formatEorzeaTime(timestamp: number): string {
+    const et2Real = 70 * 60 * 1000;
+    const timeInDay = timestamp % et2Real;
+    const etMinutes = Math.floor((timeInDay * 1440) / 70 / 60 / 1000);
+    return (
+      fixedWidth(Math.floor(etMinutes / 60)) +
+      ":" +
+      fixedWidth(Math.floor(etMinutes % 60))
+    );
+  }
 </script>
 
 <div class={["message", "message-item", "filter-" + msg.filter]}>
-  <span class="time">[{time}]</span>
+  <span class="time">
+    {#if eorzeaTime}
+      {time}
+      <span class="eorzea-time">{formatEorzeaTime(msg.time.getTime())}</span>
+    {:else}
+      {time}
+    {/if}
+  </span>
   <span class="text-body">
     <span class="sender">
       <TokenTextComponent token={msg.sender} />
@@ -48,6 +73,17 @@
   .message .time {
     margin-right: 0.2em;
     color: white;
+  }
+
+  .message .time::before {
+    content: "[";
+  }
+  .message .time::after {
+    content: "]";
+  }
+
+  .eorzea-time::before {
+    content: "\e0db";
   }
 
   .message .sender::before {
